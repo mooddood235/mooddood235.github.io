@@ -25,17 +25,23 @@ function main(vertexStr, fragStr){
   
   camera.position.z = 5;
   
-  ReactDOM.createRoot(document.getElementById('root')).render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  )
+  // ReactDOM.createRoot(document.getElementById('root')).render(
+  //   <React.StrictMode>
+  //     <App />
+  //   </React.StrictMode>
+  // )
   function render(){
     requestAnimationFrame(render);
     sphere.rotation.x += 0.01;
     sphere.rotation.y += 0.01;
     renderer.render(scene, camera);
   }
+  window.addEventListener('resize', function(){
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
   render();  
 }
+
 
