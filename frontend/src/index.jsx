@@ -15,14 +15,13 @@ function main(vertexStr, fragStr){
   renderer.setSize( window.innerWidth, window.innerHeight );
   document.body.appendChild( renderer.domElement );
   
-  const geometry = new THREE.SphereGeometry(1);
-  //const material = new THREE.MeshBasicMaterial({color:0xFFFF});
+  const geometry = new THREE.IcosahedronGeometry(3, 50);
   const material = new THREE.ShaderMaterial({
     vertexShader:vertexStr,
     fragmentShader:fragStr
   });
-  const cube = new THREE.Mesh( geometry, material );
-  scene.add( cube );
+  const sphere = new THREE.Mesh( geometry, material );
+  scene.add( sphere );
   
   camera.position.z = 5;
   
@@ -33,8 +32,8 @@ function main(vertexStr, fragStr){
   )
   function render(){
     requestAnimationFrame(render);
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
+    sphere.rotation.x += 0.01;
+    sphere.rotation.y += 0.01;
     renderer.render(scene, camera);
   }
   render();  
