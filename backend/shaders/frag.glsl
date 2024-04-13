@@ -1,33 +1,36 @@
+#include <common>
+
 varying vec3 fragPos;
 varying vec3 fragNormal;
 varying vec2 fragUV;
 
+vec2 GetGradient(vec2 p);
+float PerlinNoise(vec2 pos);
+
 void main(){
-    gl_FragColor = vec4(fragNormal, 1);
+  float n = PerlinNoise(fragUV * 100.0);
+  gl_FragColor = vec4(n, n, n, 1);
 }
-
-// Used as initial seed to the PRNG.
-uint pcg_hash(uint seed)
-{
-  uint state = seed * 747796405u + 2891336453u;
-  uint word = ((state >> ((state >> 28u) + 4u)) ^ state) * 277803737u;
-  return (word >> 22u) ^ word;
+float PerlinNoise(vec2 pos){
+    vec2 i = floor(pos);
+    vec2 f = fract(pos);
+    vec2 blend = f * f * (3.0 - 2.0 * f);
+    float noiseVal = 
+        mix(
+            mix(
+                dot(GetGradient(i + vec2(0, 0)), f - vec2(0, 0)),
+                dot(GetGradient(i + vec2(1, 0)), f - vec2(1, 0)),
+                blend.x),
+            mix(
+                dot(GetGradient(i + vec2(0, 1)), f - vec2(0, 1)),
+                dot(GetGradient(i + vec2(1, 1)), f - vec2(1, 1)),
+                blend.x),
+        blend.y
+    );
+    return noiseVal * 0.5 + 0.5;
 }
-
-// Used to advance the PCG state.
-uint rand_pcg(inout uint rng_state)
-{
-  uint state = rng_state;
-  rng_state = rng_state * 747796405u + 2891336453u;
-  uint word = ((state >> ((state >> 28u) + 4u)) ^ state) * 277803737u;
-  return (word >> 22u) ^ word;
-}
-
-// Advances the prng state and returns the corresponding random float.
-// Range is [0, 1)
-float rand(inout uint state)
-{
-  uint x = rand_pcg(state);
-  state = x;
-  return float(x) / (2.0 * float(0x80000000u));
+vec2 GetGradient(vec2 p){
+    float rand = rand(p);
+    float angle = 6.283185 * rand + 4.0 * rand;
+    return vec2(cos(angle), sin(angle));
 }

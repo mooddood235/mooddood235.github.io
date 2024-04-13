@@ -15,7 +15,7 @@ function main(vertexStr, fragStr){
   renderer.setSize( window.innerWidth, window.innerHeight );
   document.body.appendChild( renderer.domElement );
   
-  const geometry = new THREE.IcosahedronGeometry(3, 50);
+  const geometry = new THREE.IcosahedronGeometry(2.5, 100);
   const material = new THREE.ShaderMaterial({
     vertexShader:vertexStr,
     fragmentShader:fragStr
@@ -32,8 +32,8 @@ function main(vertexStr, fragStr){
   // )
   function render(){
     requestAnimationFrame(render);
-    sphere.rotation.x += 0.01;
-    sphere.rotation.y += 0.01;
+    sphere.rotation.x += 0.002;
+    sphere.rotation.y += 0.002;
     renderer.render(scene, camera);
   }
   window.addEventListener('resize', function(){
