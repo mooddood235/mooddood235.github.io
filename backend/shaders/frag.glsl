@@ -1,14 +1,14 @@
 #include <common>
 
-varying vec3 fragPos;
-varying vec3 fragNormal;
-varying vec2 fragUV;
+varying vec3 vPos;
+varying vec3 vNormal;
+varying vec2 vUv;
 
 float cnoise(vec3 P);
 
 void main(){
-  float n = cnoise(fragPos);
-  vec3 color = vec3(fragNormal) * 0.5 + 0.5;
+  float n = cnoise(vPos * 2.0);
+  vec3 color = vec3(vNormal) * 0.5 + 0.5;
   gl_FragColor = vec4(color, 1);
 }
 

@@ -4,6 +4,7 @@ import App from './App.jsx'
 import * as THREE from 'three';
 import './index.css'
 import { api_getshaders } from './api.js';
+import { Vector3 } from 'three';
 
 api_getshaders((data)=>main(data.vertexStr, data.fragStr));
 
@@ -17,6 +18,9 @@ function main(vertexStr, fragStr){
   
   const geometry = new THREE.IcosahedronGeometry(2.5, 100);
   const material = new THREE.ShaderMaterial({
+    uniforms:{
+      diffuse:new THREE.Vector3(1, 1, 1)
+    },
     vertexShader:vertexStr,
     fragmentShader:fragStr
   });
