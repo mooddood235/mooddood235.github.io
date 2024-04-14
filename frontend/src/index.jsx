@@ -24,7 +24,7 @@ function Main(resources){
     vertexShader:resources.vertexStr,
     specularIntensity:1,
     roughness:0.0,
-    color:new THREE.Color(0.5, 0.5, 0.5),
+    color:new THREE.Color(1, 0, 0),
     envMap:resources.envTexture
   }) 
   const sphere = new THREE.Mesh( geometry, material );

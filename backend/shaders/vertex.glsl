@@ -72,9 +72,28 @@ float cnoise(vec3 P){
   float n_xyz = mix(n_yz.x, n_yz.y, fade_xyz.x); 
   return 2.2 * n_xyz;
 }
+vec3 orthogonal(vec3 v) {
+  return normalize(abs(v.x) > abs(v.z) ? vec3(-v.y, v.x, 0.0)
+  : vec3(0.0, -v.z, v.y));
+}
+
+const float offset = 0.00001;
 
 void main(){
-    vec3 displacedPosition = position + normal * (cnoise(position * 2.2) * 0.5 + 0.5);
-    csm_Normal = normal;
-    csm_PositionRaw = projectionMatrix * modelViewMatrix * vec4(displacedPosition, 1.0);
+  vec3 tangent = orthogonal(normal);
+  vec3 bitangent = normalize(cross(normal, tangent));
+
+  vec3 neighbour1 = position + tangent * offset;
+  vec3 neighbour2 = position + bitangent * offset;
+
+  vec3 displacedPosition = position + normal * (cnoise(position * 2.2) * 0.5 + 0.5);
+  vec3 displacedNeighbour1 = neighbour1 + normal * (cnoise(neighbour1 * 2.2) * 0.5 + 0.5);
+  vec3 displacedNeighbour2 = neighbour2 + normal * (cnoise(neighbour2 * 2.2) * 0.5 + 0.5);
+
+  vec3 displacedTangent = displacedNeighbour1 - displacedPosition;
+  vec3 displacedBitangent = displacedNeighbour2 - displacedPosition;
+  vec3 displacedNormal = normalize(cross(displacedTangent, displacedBitangent));
+
+  csm_Normal = displacedNormal;
+  csm_PositionRaw = projectionMatrix * modelViewMatrix * vec4(displacedPosition, 1.0);
 }
