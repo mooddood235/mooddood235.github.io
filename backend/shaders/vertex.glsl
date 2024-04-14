@@ -1,18 +1,3 @@
-#include <common>
-
-varying vec3 vPos;
-varying vec3 vNormal;
-varying vec2 vUv;
-
-float cnoise(vec3 P);
-
-void main(){
-    vec3 displacedPosition = position + normal * (cnoise(position * 2.2) * 0.5 + 0.5) * 0.5;
-    vPos= position;
-    vNormal = normal;
-    vUv = uv;
-    gl_Position = projectionMatrix * modelViewMatrix * vec4(displacedPosition, 1.0);
-}
 //	Classic Perlin 3D Noise 
 //	by Stefan Gustavson
 //
@@ -86,4 +71,10 @@ float cnoise(vec3 P){
   vec2 n_yz = mix(n_z.xy, n_z.zw, fade_xyz.y);
   float n_xyz = mix(n_yz.x, n_yz.y, fade_xyz.x); 
   return 2.2 * n_xyz;
+}
+
+void main(){
+    vec3 displacedPosition = position + normal * (cnoise(position * 2.2) * 0.5 + 0.5);
+    csm_Normal = normal;
+    csm_PositionRaw = projectionMatrix * modelViewMatrix * vec4(displacedPosition, 1.0);
 }

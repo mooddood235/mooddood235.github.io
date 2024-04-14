@@ -1,5 +1,3 @@
-#include <common>
-
 varying vec3 vPos;
 varying vec3 vNormal;
 varying vec2 vUv;

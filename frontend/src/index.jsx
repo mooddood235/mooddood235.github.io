@@ -2,33 +2,34 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import * as THREE from 'three';
+import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
 import './index.css'
 import { api_getshaders } from './api.js';
-import { Vector3 } from 'three';
+import CustomShaderMaterial from 'three-custom-shader-material/vanilla';
 
-api_getshaders((data)=>main(data.vertexStr, data.fragStr));
+GetResources(Main);
 
-function main(vertexStr, fragStr){
+function Main(resources){
+  const renderer = new THREE.WebGLRenderer(); 
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  document.body.appendChild(renderer.domElement);
+  
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-  
-  const renderer = new THREE.WebGLRenderer();
-  renderer.setSize( window.innerWidth, window.innerHeight );
-  document.body.appendChild( renderer.domElement );
-  
-  const geometry = new THREE.IcosahedronGeometry(2.5, 100);
-  const material = new THREE.ShaderMaterial({
-    uniforms:{
-      diffuse:new THREE.Vector3(1, 1, 1)
-    },
-    vertexShader:vertexStr,
-    fragmentShader:fragStr
-  });
-  const sphere = new THREE.Mesh( geometry, material );
-  scene.add( sphere );
-  
   camera.position.z = 5;
   
+  const geometry = new THREE.IcosahedronGeometry(2, 150);
+  const material = new CustomShaderMaterial({
+    baseMaterial:THREE.MeshPhysicalMaterial,
+    vertexShader:resources.vertexStr,
+    specularIntensity:1,
+    roughness:0.0,
+    color:new THREE.Color(0.5, 0.5, 0.5),
+    envMap:resources.envTexture
+  }) 
+  const sphere = new THREE.Mesh( geometry, material );
+  scene.add( sphere );
+
   // ReactDOM.createRoot(document.getElementById('root')).render(
   //   <React.StrictMode>
   //     <App />
@@ -48,4 +49,15 @@ function main(vertexStr, fragStr){
   render();  
 }
 
-
+function GetResources(cb){
+  api_getshaders(function(data0){
+    const loader = new RGBELoader();
+    loader.load('/src/assets/studio.hdr', 
+    (envTexture)=>{
+      envTexture.mapping = THREE.EquirectangularReflectionMapping;
+      cb({...data0, envTexture})
+    },
+    (xhr)=> console.log(`Loading environment map: ${xhr}`),
+    (error)=>console.error(error))
+  })
+}
