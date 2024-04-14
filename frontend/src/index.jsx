@@ -32,7 +32,8 @@ function Main(resources){
     specularIntensity:1,
     roughness:0.0,
     color:new THREE.Color(1, 0, 0),
-    envMap:resources.envTexture
+    envMap:resources.envTexture,
+    silent:true
   }) 
   const sphere = new THREE.Mesh( geometry, material );
   scene.add( sphere );
@@ -64,7 +65,7 @@ function GetResources(cb){
       envTexture.mapping = THREE.EquirectangularReflectionMapping;
       cb({...data0, envTexture})
     },
-    (xhr)=> console.log(`Loading environment map: ${xhr}`),
+    (xhr)=>{},
     (error)=>console.error(error))
   })
 }
