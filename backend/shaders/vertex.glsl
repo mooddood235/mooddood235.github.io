@@ -72,15 +72,11 @@ float cnoise(vec3 P){
   float n_xyz = mix(n_yz.x, n_yz.y, fade_xyz.x); 
   return 2.2 * n_xyz;
 }
-vec3 orthogonal(vec3 v) {
-  return normalize(abs(v.x) > abs(v.z) ? vec3(-v.y, v.x, 0.0)
-  : vec3(0.0, -v.z, v.y));
-}
 
 const float offset = 0.00001;
-
+attribute vec3 tangent;
 void main(){
-  vec3 tangent = orthogonal(normal);
+  //vec3 tangent = orthogonal(normal);
   vec3 bitangent = normalize(cross(normal, tangent));
 
   vec3 neighbour1 = position + tangent * offset;

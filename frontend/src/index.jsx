@@ -18,7 +18,14 @@ function Main(resources){
   const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
   camera.position.z = 5;
   
-  const geometry = new THREE.IcosahedronGeometry(2, 150);
+  const geometry = new THREE.IcosahedronGeometry(2, 100);
+  var indices = [];
+  for (var i = 0; i < geometry.getAttribute('position').count; i++){
+    indices.push(i);
+  }
+  geometry.setIndex(indices);
+  geometry.computeTangents();
+  
   const material = new CustomShaderMaterial({
     baseMaterial:THREE.MeshPhysicalMaterial,
     vertexShader:resources.vertexStr,
