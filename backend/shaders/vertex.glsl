@@ -74,6 +74,9 @@ float cnoise(vec3 P){
 }
 
 const float offset = 0.00001;
+const float strength = 0.1;
+const float freq = 5.0;
+
 attribute vec3 tangent;
 void main(){
   //vec3 tangent = orthogonal(normal);
@@ -82,9 +85,9 @@ void main(){
   vec3 neighbour1 = position + tangent * offset;
   vec3 neighbour2 = position + bitangent * offset;
 
-  vec3 displacedPosition = position + normal * (cnoise(position * 2.2) * 0.5 + 0.5);
-  vec3 displacedNeighbour1 = neighbour1 + normal * (cnoise(neighbour1 * 2.2) * 0.5 + 0.5);
-  vec3 displacedNeighbour2 = neighbour2 + normal * (cnoise(neighbour2 * 2.2) * 0.5 + 0.5);
+  vec3 displacedPosition = position + normal * cnoise(position * freq) * strength;
+  vec3 displacedNeighbour1 = neighbour1 + normal * cnoise(neighbour1 * freq) * strength;
+  vec3 displacedNeighbour2 = neighbour2 + normal * cnoise(neighbour2 * freq) * strength;
 
   vec3 displacedTangent = displacedNeighbour1 - displacedPosition;
   vec3 displacedBitangent = displacedNeighbour2 - displacedPosition;

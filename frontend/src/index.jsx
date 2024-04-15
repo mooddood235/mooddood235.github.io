@@ -12,14 +12,13 @@ GetResources(Main);
 function Main(resources){
   const renderer = new THREE.WebGLRenderer({alpha:true}); 
   renderer.setSize(window.innerWidth, window.innerHeight);
-  //document.body.appendChild(renderer.domElement);
   document.getElementById('three').appendChild(renderer.domElement);
   
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+  const camera = new THREE.PerspectiveCamera( 30, window.innerWidth / window.innerHeight, 0.1, 1000 );
   camera.position.z = 5;
   
-  const geometry = new THREE.IcosahedronGeometry(2, 100);
+  const geometry = new THREE.IcosahedronGeometry(4.5, 150);
   var indices = [];
   for (var i = 0; i < geometry.getAttribute('position').count; i++){
     indices.push(i);
@@ -32,11 +31,13 @@ function Main(resources){
     vertexShader:resources.vertexStr,
     specularIntensity:1,
     roughness:0.0,
-    color:new THREE.Color(1, 0, 0),
+    color:new THREE.Color(0.02, 0.02, 0.02),
     envMap:resources.envTexture,
     silent:true
   }) 
   const sphere = new THREE.Mesh( geometry, material );
+  sphere.position.y = -5;
+  sphere.position.z = 0;
   scene.add( sphere );
 
   ReactDOM.createRoot(document.getElementById('root')).render(
