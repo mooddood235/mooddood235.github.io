@@ -10,9 +10,10 @@ import CustomShaderMaterial from 'three-custom-shader-material/vanilla';
 GetResources(Main);
 
 function Main(resources){
-  const renderer = new THREE.WebGLRenderer(); 
+  const renderer = new THREE.WebGLRenderer({alpha:true}); 
   renderer.setSize(window.innerWidth, window.innerHeight);
   //document.body.appendChild(renderer.domElement);
+  document.getElementById('three').appendChild(renderer.domElement);
   
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
@@ -54,7 +55,7 @@ function Main(resources){
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
   });
-  //render();  
+  render();  
 }
 
 function GetResources(cb){
