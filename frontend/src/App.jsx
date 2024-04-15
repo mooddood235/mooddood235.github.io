@@ -1,17 +1,30 @@
 import { useState } from 'react'
 import './App.css'
+import TypeWriter from 'typewriter-effect'
 
 function App(){
   return (
-    <About/>  
+    <Intro/>  
   )
 }
-function About(){
+function Intro(){
+  const typeWriterOptions = {
+    strings:[
+      'computer graphics.',
+      'web development.',
+      'programming languages.'
+    ],
+    autoStart:true,
+    loop:true
+  }
   return (
-    <div id='about'>
+    <div id='intro'>
       Hello, I am
       <div id='name'>Mahmoud Zeidan</div>
-      I am a
+      <div id='typewriter_container'>
+        I love&nbsp;
+        <div id='typewriter'><TypeWriter options={typeWriterOptions}></TypeWriter></div>
+      </div>
     </div>
   )
 }

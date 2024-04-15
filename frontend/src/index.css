@@ -12,7 +12,7 @@ body{
   background-color: rgb(25, 25, 25);
   font-family: 'JetBrains Mono';
 }
-#about{
+#intro{
   display:flex;
   flex-flow: column wrap;
 
@@ -27,4 +27,13 @@ body{
 #name{
   font-family: 'JetBrains Mono Bold';
   font-size: 200%;
+  color:aquamarine
+}
+#typewriter_container{
+  display:flex;
+  flex-flow: row wrap;
+}
+#typewriter{
+  font-family: 'JetBrains Mono Bold';
+  color: aqua;
 }
