@@ -9,8 +9,7 @@ app.use(cors());
 
 app.get('/api/shaders', function(req, res){
     const vertexStr = fs.readFileSync('shaders/vertex.glsl', 'utf8');
-    const fragStr = fs.readFileSync('shaders/frag.glsl', 'utf8');
-    res.json({vertexStr:vertexStr, fragStr:fragStr });
+    res.json({vertexStr:vertexStr});
 });
 app.listen(port, ()=>{
     console.log(`Listening on port ${port}`);

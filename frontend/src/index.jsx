@@ -18,20 +18,17 @@ function Main(resources){
   camera.position.z = 5;
   
   const geometry = CreateGeometry();
-  const material = CreateMaterial(resources);
+  var material = CreateMaterial(resources);
   
   const sphere = new THREE.Mesh( geometry, material );
   sphere.position.y = -5;
   sphere.position.z = 0;
   scene.add( sphere );
 
-  ReactDOM.createRoot(document.getElementById('root')).render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  )
   function render(){
     requestAnimationFrame(render);
+    if (material.userData.shader)
+      material.userData.shader.uniforms.time.value = performance.now() / 1000.0;
     renderer.render(scene, camera);
   }
   window.addEventListener('resize', function(){
@@ -39,6 +36,11 @@ function Main(resources){
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
   });
+  ReactDOM.createRoot(document.getElementById('root')).render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  )
   render();  
 }
 function CreateGeometry(){
@@ -52,14 +54,16 @@ function CreateGeometry(){
   return geometry;
 }
 function CreateMaterial(resources){
-  const material = new THREE.MeshPhysicalMaterial({
-    specularIntensity:1,
+  var material = new THREE.MeshPhysicalMaterial({
+    specularIntensity:1.0,
     roughness:0.0,
-    color:new THREE.Color(0.02, 0.02, 0.02),
+    color:new THREE.Color(0.1, 0.1, 0.1),
     envMap:resources.envTexture
   });
   material.onBeforeCompile = function(shader){
     shader.vertexShader = resources.vertexStr;
+    shader.uniforms.time = {value:0.0};
+    material.userData.shader = shader;
   }
   return material;
 }
