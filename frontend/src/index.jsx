@@ -5,7 +5,6 @@ import * as THREE from 'three';
 import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
 import './index.css'
 import { api_getshaders } from './api.js';
-import CustomShaderMaterial from 'three-custom-shader-material/vanilla';
 
 GetResources(Main);
 
@@ -26,15 +25,15 @@ function Main(resources){
   geometry.setIndex(indices);
   geometry.computeTangents();
   
-  const material = new CustomShaderMaterial({
-    baseMaterial:THREE.MeshPhysicalMaterial,
-    vertexShader:resources.vertexStr,
+  const material = new THREE.MeshPhysicalMaterial({
     specularIntensity:1,
     roughness:0.0,
     color:new THREE.Color(0.02, 0.02, 0.02),
-    envMap:resources.envTexture,
-    silent:true
-  }) 
+    envMap:resources.envTexture
+  });
+  material.onBeforeCompile = function(shader){
+    shader.vertexShader = resources.vertexStr;
+  }
   const sphere = new THREE.Mesh( geometry, material );
   sphere.position.y = -5;
   sphere.position.z = 0;

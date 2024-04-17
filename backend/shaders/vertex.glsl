@@ -77,9 +77,14 @@ const float offset = 0.00001;
 const float strength = 0.1;
 const float freq = 5.0;
 
+//uniform float time;
 attribute vec3 tangent;
+
+varying vec3 vNormal;
+varying vec3 vViewPosition;
+
 void main(){
-  //vec3 tangent = orthogonal(normal);
+  vViewPosition = cameraPosition;
   vec3 bitangent = normalize(cross(normal, tangent));
 
   vec3 neighbour1 = position + tangent * offset;
@@ -93,6 +98,6 @@ void main(){
   vec3 displacedBitangent = displacedNeighbour2 - displacedPosition;
   vec3 displacedNormal = normalize(cross(displacedTangent, displacedBitangent));
 
-  csm_Normal = displacedNormal;
-  csm_PositionRaw = projectionMatrix * modelViewMatrix * vec4(displacedPosition, 1.0);
+  vNormal = normalize(vec3(modelMatrix * vec4(displacedNormal, 0.0)));
+  gl_Position = projectionMatrix * modelViewMatrix * vec4(displacedPosition, 1.0);
 }
