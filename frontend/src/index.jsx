@@ -17,23 +17,9 @@ function Main(resources){
   const camera = new THREE.PerspectiveCamera( 30, window.innerWidth / window.innerHeight, 0.1, 1000 );
   camera.position.z = 5;
   
-  const geometry = new THREE.IcosahedronGeometry(4.5, 150);
-  var indices = [];
-  for (var i = 0; i < geometry.getAttribute('position').count; i++){
-    indices.push(i);
-  }
-  geometry.setIndex(indices);
-  geometry.computeTangents();
+  const geometry = CreateGeometry();
+  const material = CreateMaterial(resources);
   
-  const material = new THREE.MeshPhysicalMaterial({
-    specularIntensity:1,
-    roughness:0.0,
-    color:new THREE.Color(0.02, 0.02, 0.02),
-    envMap:resources.envTexture
-  });
-  material.onBeforeCompile = function(shader){
-    shader.vertexShader = resources.vertexStr;
-  }
   const sphere = new THREE.Mesh( geometry, material );
   sphere.position.y = -5;
   sphere.position.z = 0;
@@ -46,8 +32,6 @@ function Main(resources){
   )
   function render(){
     requestAnimationFrame(render);
-    sphere.rotation.x += 0.002;
-    sphere.rotation.y += 0.002;
     renderer.render(scene, camera);
   }
   window.addEventListener('resize', function(){
@@ -57,7 +41,28 @@ function Main(resources){
   });
   render();  
 }
-
+function CreateGeometry(){
+  const geometry = new THREE.IcosahedronGeometry(4.5, 150);
+  var indices = [];
+  for (var i = 0; i < geometry.getAttribute('position').count; i++){
+    indices.push(i);
+  }
+  geometry.setIndex(indices);
+  geometry.computeTangents();
+  return geometry;
+}
+function CreateMaterial(resources){
+  const material = new THREE.MeshPhysicalMaterial({
+    specularIntensity:1,
+    roughness:0.0,
+    color:new THREE.Color(0.02, 0.02, 0.02),
+    envMap:resources.envTexture
+  });
+  material.onBeforeCompile = function(shader){
+    shader.vertexShader = resources.vertexStr;
+  }
+  return material;
+}
 function GetResources(cb){
   api_getshaders(function(data0){
     const loader = new RGBELoader();
