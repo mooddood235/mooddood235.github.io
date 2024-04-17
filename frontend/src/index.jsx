@@ -5,37 +5,53 @@ import * as THREE from 'three';
 import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
 import './index.css'
 import { api_getshaders } from './api.js';
+import { MathUtils } from 'three/src/math/MathUtils.js';
+
+const renderWidth = window.innerWidth / 2.0;
+const renderHeight = window.innerWidth / 2.0;
 
 GetResources(Main);
 
 function Main(resources){
   const renderer = new THREE.WebGLRenderer({alpha:true}); 
-  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setSize(renderWidth, renderHeight);
+  ApplyRendererDomElementStyles();
   document.getElementById('three').appendChild(renderer.domElement);
   
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera( 30, window.innerWidth / window.innerHeight, 0.1, 1000 );
+  const camera = new THREE.PerspectiveCamera(60, renderWidth / renderHeight, 0.1, 1000 );
   camera.position.z = 5;
   
   const geometry = CreateGeometry();
   var material = CreateMaterial(resources);
   
-  const sphere = new THREE.Mesh( geometry, material );
-  sphere.position.y = -5;
-  sphere.position.z = 0;
-  scene.add( sphere );
+  const object = new THREE.Mesh( geometry, material );
+  object.position.z = -30;
+  object.rotation.y = MathUtils.degToRad(-15);
+  object.rotation.z = MathUtils.degToRad(-15);
+  object.rotation.x = MathUtils.degToRad(-15);
+  scene.add( object );
 
   function render(){
+    const time = performance.now() / 1000.0;
     requestAnimationFrame(render);
+
     if (material.userData.shader)
-      material.userData.shader.uniforms.time.value = performance.now() / 1000.0;
+      material.userData.shader.uniforms.time.value = time;
+
+    object.rotation.z += MathUtils.degToRad(Math.sin(time) * 0.2);
+
     renderer.render(scene, camera);
   }
   window.addEventListener('resize', function(){
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    // camera.aspect = renderWidth / renderHeight;
+    // camera.updateProjectionMatrix();
+    // renderer.setSize(renderWidth, renderHeight);
   });
+  function ApplyRendererDomElementStyles(){
+    renderer.domElement.style.width = '100%';
+    renderer.domElement.style.height = '100%';
+  }
   ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
       <App />
@@ -43,13 +59,15 @@ function Main(resources){
   )
   render();  
 }
+
 function CreateGeometry(){
-  const geometry = new THREE.IcosahedronGeometry(4.5, 150);
-  var indices = [];
-  for (var i = 0; i < geometry.getAttribute('position').count; i++){
-    indices.push(i);
-  }
-  geometry.setIndex(indices);
+  const geometry = new THREE.TorusKnotGeometry(10, 3, 1500, 300, 2,3);
+  //const geometry = new THREE.IcosahedronGeometry(10, 200);
+  // var indices = [];
+  // for (var i = 0; i < geometry.getAttribute('position').count; i++){
+  //   indices.push(i);
+  // }
+  // geometry.setIndex(indices);
   geometry.computeTangents();
   return geometry;
 }

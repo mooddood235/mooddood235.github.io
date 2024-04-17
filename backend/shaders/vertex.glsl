@@ -4,9 +4,9 @@ attribute vec3 tangent;
 varying vec3 vNormal;
 varying vec3 vViewPosition;
 
-const float offset = 0.00001;
-const float strength = 0.1;
-const float freq = 5.0;
+const float offset = 0.001;
+const float strength = 0.8;
+const float freq = 0.25;
 
 float cnoise(vec3 P);
 
