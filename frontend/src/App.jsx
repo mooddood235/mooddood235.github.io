@@ -20,19 +20,15 @@ function App({resources}){
   )
 }
 function Nav(){
-  const keyframes = [
-    {height:'5em'},
-    {color:'black'},
-    {height:'2em'}
-  ]
-
   return (
     <motion.div id='nav'
       initial={{height:'0em'}}
       animate={{height:'6.5vh'}}
       transition={{delay:2, duration:2.5}}
     >
+      <NavElement text='PROJECTS'/>
       <NavElement text='HOME'/>
+      <NavElement text='ABOUT'/>
     </motion.div>
     
   )
