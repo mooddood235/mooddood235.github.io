@@ -28,7 +28,7 @@ function Nav(){
   return (
     <motion.div id='nav'
       initial={{height:'0em'}}
-      animate={{height:'5em'}}
+      animate={{height:'6.5vh'}}
       transition={{delay:2, duration:2.5}}
     >
       <NavElement text='HOME'/>
