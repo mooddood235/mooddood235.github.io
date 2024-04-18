@@ -58,14 +58,17 @@ function Home({cursorPos, resources}){
   }
   return (
     <div id='home'>
-      <div id='name'>
+      <motion.div id='name'
+        animate={{marginRight:'40%'}}
+        transition={{delay:2, duration:2}}
+      >
         Mahmoud<br/>
         Zeidan
         <div id='shadow' style={shadowStyle}>
           Mahmoud<br/>
           Zeidan
         </div>
-      </div>
+      </motion.div>
       <Three resources={resources}/>
     </div>
   )

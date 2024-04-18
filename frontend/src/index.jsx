@@ -7,10 +7,6 @@ import './index.css'
 import { api_getshaders } from './api.js';
 import { MathUtils } from 'three/src/math/MathUtils.js';
 
-const renderWidth = window.innerWidth;
-const renderHeight = window.innerHeight;
-
-//GetResources(Main);
 
 GetResources((resources)=>{
   ReactDOM.createRoot(document.getElementById('root')).render(
