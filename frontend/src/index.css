@@ -32,12 +32,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  animation: move_home 2s 2s forwards;
+}
+@keyframes move_name{
+ 100%{
+  padding-right: 40%;
+ }
 }
 #name{
   font-size: 1000%;
   position: absolute;
   color: aquamarine;
   z-index: 0;
+  animation: move_name 2s 2s forwards;
 }
 #shadow{
   position: absolute;
@@ -64,6 +71,7 @@
   justify-content: center;
   color: rgba(0, 0, 0, 0);
   font-family: 'JetBrains Mono Bold';
+  z-index: 1;
 }
 .nav_element{
   cursor: pointer;
