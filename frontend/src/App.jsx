@@ -12,8 +12,14 @@ function App(){
 function Home(){
   return (
     <div id='home'>
-      Mahmoud<br/>
-      Zeidan
+      <div id='name'>
+        Mahmoud<br/>
+        Zeidan
+      </div>
+      <div id='shadow'>
+        Mahmoud<br/>
+        Zeidan
+      </div>
     </div>
   )
 }
