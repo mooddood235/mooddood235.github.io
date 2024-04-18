@@ -10,46 +10,40 @@
   font-family: 'JetBrains Mono ExtraBold';
   src: url('assets/fonts/ttf/JetBrainsMono-ExtraBold.ttf');
 }
-html, body, #root{
-  all:unset;
-  width: 100%;
-  height: 100%;
-  background-color: rgb(75, 74, 74) ;
-}
-#three{
+#root{
   all:unset;
   position: fixed;
-  bottom: 0;
-  right: 5%;
+  top: 0;
+  left: 0;
   padding: 0;
   margin: 0;
-  z-index: -2;
+  width: 100%;
+  height: 100%;
+}
+#app{
+  width: 100%;
+  height: 100%;
+  font-family: 'JetBrains Mono';
+  background-color: rgb(75, 75, 75);
+}
+#home{
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50%;
-}
-#app{
-  font-family: 'JetBrains Mono';
-  color: aquamarine;
-}
-#home{
-  position: relative;
-  font-family: 'JetBrains Mono Bold';
-  font-size: 1000%;
-  margin-top: 10%;
-  margin-left: 0;
 }
 #name{
+  font-size: 1000%;
   position: absolute;
-  top: 0px;
-  left: 200px;
+  color: aquamarine;
+  z-index: 0;
 }
 #shadow{
   position: absolute;
-  top: -50px;
-  left: 100px;
-  color:rgb(42, 41, 41);
+  top:10%;
+  left: -10%;
   z-index: -1;
+  color:rgb(51, 51, 51);
 }
 

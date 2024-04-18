@@ -15,10 +15,10 @@ function Home(){
       <div id='name'>
         Mahmoud<br/>
         Zeidan
-      </div>
-      <div id='shadow'>
-        Mahmoud<br/>
-        Zeidan
+        <div id='shadow'>
+          Mahmoud<br/>
+          Zeidan
+        </div>
       </div>
     </div>
   )

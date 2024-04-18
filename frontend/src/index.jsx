@@ -7,8 +7,8 @@ import './index.css'
 import { api_getshaders } from './api.js';
 import { MathUtils } from 'three/src/math/MathUtils.js';
 
-const renderWidth = window.innerWidth / 2.0;
-const renderHeight = window.innerWidth / 2.0;
+const renderWidth = window.innerWidth;
+const renderHeight = window.innerHeight;
 
 GetResources(Main);
 
@@ -16,7 +16,7 @@ function Main(resources){
   const renderer = new THREE.WebGLRenderer({alpha:true}); 
   renderer.setSize(renderWidth, renderHeight);
   ApplyRendererDomElementStyles();
-  document.getElementById('three').appendChild(renderer.domElement);
+  //document.getElementById('three').appendChild(renderer.domElement);
   
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(60, renderWidth / renderHeight, 0.1, 1000 );
@@ -44,9 +44,9 @@ function Main(resources){
     renderer.render(scene, camera);
   }
   window.addEventListener('resize', function(){
-    // camera.aspect = renderWidth / renderHeight;
-    // camera.updateProjectionMatrix();
-    // renderer.setSize(renderWidth, renderHeight);
+    camera.aspect = renderWidth / renderHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(renderWidth, renderHeight);
   });
   function ApplyRendererDomElementStyles(){
     renderer.domElement.style.width = '100%';
