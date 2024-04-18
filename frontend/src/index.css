@@ -20,16 +20,6 @@
   width: 100%;
   height: 100%;
 }
-#three{
-  all:unset;
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  height: 100%;
-}
 #app{
   width: 100%;
   height: 100%;
@@ -53,8 +43,8 @@
   font-size: 1000%;
   position: absolute;
   color: aquamarine;
-  z-index: 0;
   animation: move_name 2s 2s forwards;
+  z-index: 1;
 }
 #shadow{
   position: absolute;
@@ -62,6 +52,16 @@
   left: -10%;
   z-index: -1;
   color:rgb(51, 51, 51);
+}
+#three{
+  all:unset;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
 }
 @keyframes nav_appear{
   50% {color: black;}
