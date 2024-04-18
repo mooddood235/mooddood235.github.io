@@ -15,8 +15,6 @@ GetResources(Main);
 function Main(resources){
   const renderer = new THREE.WebGLRenderer({alpha:true}); 
   renderer.setSize(renderWidth, renderHeight);
-  ApplyRendererDomElementStyles();
-  //document.getElementById('three').appendChild(renderer.domElement);
   
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(60, renderWidth / renderHeight, 0.1, 1000 );
@@ -48,15 +46,12 @@ function Main(resources){
     camera.updateProjectionMatrix();
     renderer.setSize(renderWidth, renderHeight);
   });
-  function ApplyRendererDomElementStyles(){
-    renderer.domElement.style.width = '100%';
-    renderer.domElement.style.height = '100%';
-  }
   ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
       <App />
     </React.StrictMode>
   )
+  //document.getElementById('three').appendChild(renderer.domElement);
   render();  
 }
 

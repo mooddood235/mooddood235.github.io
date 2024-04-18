@@ -33,7 +33,7 @@ function Home({cursorPos}){
     top:`${10 + topOffset * strength}%`,
     left:`${-10 + leftOffset * strength}%`
   }
-
+  console.log(topOffset, leftOffset);
   return (
     <div id='home'>
       <div id='name'>

@@ -20,6 +20,16 @@
   width: 100%;
   height: 100%;
 }
+#three{
+  all:unset;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
 #app{
   width: 100%;
   height: 100%;
@@ -36,7 +46,7 @@
 }
 @keyframes move_name{
  100%{
-  padding-right: 40%;
+  margin-right: 40%;
  }
 }
 #name{
