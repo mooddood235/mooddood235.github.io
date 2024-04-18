@@ -63,23 +63,16 @@
   width: 100%;
   height: 100%;
 }
-@keyframes nav_appear{
-  50% {color: black;}
-  100% {height: 5em; color:black}
-}
 #nav{
   position: sticky;
   top:0;
   left: 0;
   background-color: aquamarine;
   width: 100%;
-  height: 0em;
-  animation: nav_appear 3s 2s forwards;
   display: flex;
   flex-flow: row;
   align-items: center;
   justify-content: center;
-  color: rgba(0, 0, 0, 0);
   font-family: 'JetBrains Mono Bold';
   z-index: 1;
 }

@@ -3,6 +3,7 @@ import './App.css'
 import { useRef } from 'react';
 import * as THREE from 'three';
 import { MathUtils } from 'three';
+import { motion } from 'framer-motion';
 
 function App({resources}){
   const [state, setState] = useState({page:'home'});
@@ -18,12 +19,32 @@ function App({resources}){
   )
 }
 function Nav(){
+  const keyframes = [
+    {height:'5em'},
+    {color:'black'},
+    {height:'2em'}
+  ]
+
   return (
-    <div id='nav'>
-      <div className='nav_element'>
-        HOME
-      </div>
-    </div>
+    <motion.div id='nav'
+      initial={{height:'0em'}}
+      animate={{height:'5em'}}
+      transition={{delay:2, duration:2.5}}
+    >
+      <NavElement text='HOME'/>
+    </motion.div>
+    
+  )
+}
+function NavElement({text}){
+  return (
+    <motion.div className='nav_element'
+      initial={{opacity:0}}
+      animate={{opacity:1}}
+      transition={{delay:2.1, duration:0.5}}
+    >
+      {text}
+    </motion.div>
   )
 }
 function Home({cursorPos, resources}){
