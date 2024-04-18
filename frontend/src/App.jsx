@@ -1,15 +1,26 @@
 import { useState } from 'react'
 import './App.css'
-import TypeWriter from 'typewriter-effect'
+import {motion} from "framer-motion"
 
 function App(){
+  const [state, setState] = useState({page:'home'});
   const [cursorPos, setCursorPos] = useState({x:0, y:0});
   const handleMouseMove = (e)=>{
     setCursorPos({x:e.clientX, y:e.clientY});
   }
   return (
     <div id='app' onMouseMove={handleMouseMove}>
-      <Home cursorPos={cursorPos}/>
+      <Nav/>
+      {state.page === 'home' ? <Home cursorPos={cursorPos}/> : null}
+    </div>
+  )
+}
+function Nav(){
+  return (
+    <div id='nav'>
+      <div className='nav_element'>
+        HOME
+      </div>
     </div>
   )
 }
@@ -22,6 +33,7 @@ function Home({cursorPos}){
     top:`${10 + topOffset * strength}%`,
     left:`${-10 + leftOffset * strength}%`
   }
+
   return (
     <div id='home'>
       <div id='name'>
