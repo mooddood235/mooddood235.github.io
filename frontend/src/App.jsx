@@ -52,16 +52,13 @@ function Home({cursorPos, resources}){
 function Three({resources}){
   const canvasRef = useRef(null);
   
-  useEffect(()=>{
-    const renderWidth = window.innerWidth;
-    const renderHeight = window.innerHeight;
-  
+  useEffect(()=>{  
     const renderer = new THREE.WebGLRenderer({alpha:true}); 
-    renderer.setSize(renderWidth, renderHeight);
+    renderer.setSize(window.innerWidth, window.innerHeight);
     canvasRef.current.appendChild(renderer.domElement);
     
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(60, renderWidth / renderHeight, 0.1, 1000 );
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000 );
     camera.position.z = 5;
     
     const geometry = CreateGeometry();
@@ -106,11 +103,11 @@ function Three({resources}){
   
       renderer.render(scene, camera);
     }
-    // window.addEventListener('resize', function(){
-    //   camera.aspect = renderWidth / renderHeight;
-    //   camera.updateProjectionMatrix();
-    //   renderer.setSize(renderWidth, renderHeight);
-    // });
+    window.addEventListener('resize', function(){
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
   }, []);
   return (
     <div id='three' ref={canvasRef}/>
