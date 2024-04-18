@@ -90,6 +90,7 @@ function Three({resources}){
     
     const object = new THREE.Mesh( geometry, material );
     object.position.z = -30;
+    object.position.x = 15;
     object.rotation.y = MathUtils.degToRad(-15);
     object.rotation.z = MathUtils.degToRad(-15);
     object.rotation.x = MathUtils.degToRad(-15);

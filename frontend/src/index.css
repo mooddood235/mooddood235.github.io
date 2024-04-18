@@ -32,7 +32,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: move_home 2s 2s forwards;
 }
 #name{
   font-size: 1000%;
