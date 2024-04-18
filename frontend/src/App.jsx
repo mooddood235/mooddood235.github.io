@@ -3,7 +3,8 @@ import './App.css'
 import { useRef } from 'react';
 import * as THREE from 'three';
 import { MathUtils } from 'three';
-import { motion } from 'framer-motion';
+import { easeInOut, easeOut, motion } from 'framer-motion';
+import { inverseLerp, lerp } from 'three/src/math/MathUtils.js';
 
 function App({resources}){
   const [state, setState] = useState({page:'home'});
@@ -77,6 +78,9 @@ function Three({resources}){
   const canvasRef = useRef(null);
   
   useEffect(()=>{  
+    var state = 'hidden';
+    var timeStart;
+
     const renderer = new THREE.WebGLRenderer({alpha:true}); 
     renderer.setSize(window.innerWidth, window.innerHeight);
     canvasRef.current.appendChild(renderer.domElement);
@@ -91,10 +95,10 @@ function Three({resources}){
     const object = new THREE.Mesh( geometry, material );
     object.position.z = -30;
     object.position.x = 15;
+    object.position.y = -50;
     object.rotation.y = MathUtils.degToRad(-15);
     object.rotation.z = MathUtils.degToRad(-15);
     object.rotation.x = MathUtils.degToRad(-15);
-    scene.add( object );
   
     render();
   
@@ -125,7 +129,17 @@ function Three({resources}){
         material.userData.shader.uniforms.time.value = time;
   
       object.rotation.z += MathUtils.degToRad(Math.sin(time) * 0.2);
-  
+      
+      if (state === 'spawnObject'){
+        scene.add(object);
+        state = 'moveObject';
+        timeStart = time;
+      }
+      if (state === 'moveObject'){
+        const t = (time - timeStart) / 2;
+        if (t <= 1) object.position.y = lerp(-50, 0, easeOut(t));
+      }
+
       renderer.render(scene, camera);
     }
     window.addEventListener('resize', function(){
@@ -133,6 +147,10 @@ function Three({resources}){
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
     });
+    const timeout = setTimeout(()=>{
+      state = 'spawnObject';
+    }, 2000)
+    return ()=>clearTimeout(timeout);
   }, []);
   return (
     <div id='three' ref={canvasRef}/>
