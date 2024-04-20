@@ -3,8 +3,8 @@ import './App.css'
 import { useRef } from 'react';
 import * as THREE from 'three';
 import { MathUtils } from 'three';
-import { easeInOut, easeOut, motion } from 'framer-motion';
-import { inverseLerp, lerp } from 'three/src/math/MathUtils.js';
+import { easeOut, motion } from 'framer-motion';
+import { lerp } from 'three/src/math/MathUtils.js';
 
 function App({resources}){
   const [state, setState] = useState({page:'home'});
@@ -12,6 +12,9 @@ function App({resources}){
   const handleMouseMove = (e)=>{
     setCursorPos({x:e.clientX, y:e.clientY});
   }
+  useEffect(()=>{
+    
+  });
   return (
     <div id='app' onMouseMove={handleMouseMove}>
       <Nav/>
@@ -99,7 +102,7 @@ function Three({resources}){
     render();
   
     function CreateGeometry(){
-      const geometry = new THREE.TorusKnotGeometry(10, 3, 1500, 300, 2,3);
+      const geometry = new THREE.TorusKnotGeometry(10, 3, 400, 27, 2,3);
       geometry.computeTangents();
       return geometry;
     }
