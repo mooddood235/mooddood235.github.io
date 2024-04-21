@@ -54,8 +54,12 @@ function Nav({state, setState}){
   )
 }
 function NavElement({text, state, setState}){
+  const style ={
+    textDecoration:state.page===text ? 'underline' : 'none',
+    fontSize:state.page===text ? '2.5vh' : '2vh'
+  }
   return (
-    <motion.div className='nav_element'
+    <motion.div className='nav_element' style={style}
       initial={{opacity:0}}
       animate={{opacity:1}}
       transition={{delay:2.1, duration:0.5}}
