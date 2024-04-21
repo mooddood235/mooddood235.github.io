@@ -68,7 +68,7 @@
   align-items: center;
   justify-content: center;
   font-family: 'JetBrains Mono Bold';
-  z-index: 1;
+  z-index: 2;
 }
 .nav_element{
   display: flex;
@@ -83,4 +83,14 @@
 }
 .nav_element:hover{
   animation: hover_animation 1s forwards;
+}
+#curtain{
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  background-color: aquamarine;
+  z-index: 1;
 }

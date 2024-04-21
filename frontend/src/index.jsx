@@ -5,7 +5,6 @@ import * as THREE from 'three';
 import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
 import './index.css'
 import { api_getshaders } from './api.js';
-import { MathUtils } from 'three/src/math/MathUtils.js';
 
 
 GetResources((resources)=>{

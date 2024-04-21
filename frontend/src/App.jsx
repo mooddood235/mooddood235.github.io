@@ -7,48 +7,68 @@ import { easeOut, motion } from 'framer-motion';
 import { lerp } from 'three/src/math/MathUtils.js';
 
 function App({resources}){
-  const [state, setState] = useState({page:'home'});
+  const [state, setState] = useState({
+    page:'HOME', transition:false
+  });
   const [cursorPos, setCursorPos] = useState({x:0, y:0});
   const handleMouseMove = (e)=>{
     setCursorPos({x:e.clientX, y:e.clientY});
   }
-  useEffect(()=>{
-    
-  });
   return (
     <div id='app' onMouseMove={handleMouseMove}>
       <Three resources={resources}/>
-      <Nav/>
-      {state.page === 'home' ? <Home cursorPos={cursorPos} resources={resources}/> : null}
+      <Nav state={state} setState={setState}/>
+      <Home cursorPos={cursorPos}/>   
+      <Curtain state={state} setState={setState}/>   
     </div>
   )
 }
-function Nav(){
+function Curtain({state, setState}){
+  useEffect(()=>{
+    const timeout = setTimeout(()=>{
+      setState({...state, transition:false});
+    }, 1500)
+    return ()=>clearTimeout(timeout);
+  }, [state.transition])
+  return (
+    <motion.div id='curtain'
+      initial={{height:'0%'}}
+      animate={{height:state.transition?'100%':'0%'}}
+      transition={{duration:1}}
+    >
+    </motion.div>
+  )
+}
+function Nav({state, setState}){
   return (
     <motion.div id='nav'
       initial={{height:'0em'}}
       animate={{height:'6.5vh'}}
       transition={{delay:2, duration:2.5}}
     >
-      <NavElement text='PROJECTS'/>
-      <NavElement text='HOME'/>
-      <NavElement text='ABOUT'/>
+      <NavElement text='PROJECTS' state={state} setState={setState}/>
+      <NavElement text='HOME' state={state} setState={setState}/>
+      <NavElement text='ABOUT' state={state} setState={setState}/>
     </motion.div>
     
   )
 }
-function NavElement({text}){
+function NavElement({text, state, setState}){
   return (
     <motion.div className='nav_element'
       initial={{opacity:0}}
       animate={{opacity:1}}
       transition={{delay:2.1, duration:0.5}}
+      onClick={()=>{
+        if (!state.transition)
+          setState({page:text, transition:state.page!==text})
+      }}
     >
       {text}
     </motion.div>
   )
 }
-function Home({cursorPos, resources}){
+function Home({cursorPos}){
   const topOffset = (cursorPos.y / window.innerHeight) * 2.0 - 1.0;
   const leftOffset = (cursorPos.x / window.innerWidth) * 2.0 - 1.0;
   const strength = 2.0;
