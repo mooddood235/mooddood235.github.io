@@ -17,6 +17,7 @@ function App({resources}){
   });
   return (
     <div id='app' onMouseMove={handleMouseMove}>
+      <Three resources={resources}/>
       <Nav/>
       {state.page === 'home' ? <Home cursorPos={cursorPos} resources={resources}/> : null}
     </div>
@@ -69,7 +70,6 @@ function Home({cursorPos, resources}){
           Zeidan
         </div>
       </motion.div>
-      <Three resources={resources}/>
     </div>
   )
 }
@@ -78,7 +78,6 @@ function Three({resources}){
   
   useEffect(()=>{  
     var state = 'hidden';
-    var timeStart;
 
     const renderer = new THREE.WebGLRenderer({alpha:true}); 
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -98,9 +97,12 @@ function Three({resources}){
     object.rotation.y = MathUtils.degToRad(-15);
     object.rotation.z = MathUtils.degToRad(-15);
     object.rotation.x = MathUtils.degToRad(-15);
+    scene.add(object);
+    renderer.compile(scene, camera);
   
+    var timeStart;
     render();
-  
+
     function CreateGeometry(){
       const geometry = new THREE.TorusKnotGeometry(10, 3, 400, 27, 2,3);
       geometry.computeTangents();
@@ -122,34 +124,25 @@ function Three({resources}){
     }
     function render(){
       const time = performance.now() / 1000.0;
-      requestAnimationFrame(render);
-  
-      if (material.userData.shader)
-        material.userData.shader.uniforms.time.value = time;
-  
-      object.rotation.z += MathUtils.degToRad(Math.sin(time) * 0.2);
-      
-      if (state === 'spawnObject'){
-        scene.add(object);
+
+      if (state === 'hidden' && time >= 3.0){
         state = 'moveObject';
         timeStart = time;
       }
       if (state === 'moveObject'){
+        if (material.userData.shader) material.userData.shader.uniforms.time.value = time;
+        object.rotation.z += MathUtils.degToRad(Math.sin(time) * 0.2);
         const t = (time - timeStart) / 2;
         if (t <= 1) object.position.y = lerp(-50, 0, easeOut(t));
       }
-
       renderer.render(scene, camera);
+      requestAnimationFrame(render);
     }
     window.addEventListener('resize', function(){
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
     });
-    const timeout = setTimeout(()=>{
-      state = 'spawnObject';
-    }, 2000)
-    return ()=>clearTimeout(timeout);
   }, []);
   return (
     <div id='three' ref={canvasRef}/>
