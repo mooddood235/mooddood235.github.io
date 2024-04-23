@@ -8,7 +8,7 @@ import { lerp } from 'three/src/math/MathUtils.js';
 
 function App({resources}){
   const [state, setState] = useState({
-    page:'HOME', transition:false
+    page:'HOME'
   });
   const [cursorPos, setCursorPos] = useState({x:0, y:0});
   const handleMouseMove = (e)=>{
