@@ -17,62 +17,8 @@ function App({resources}){
   return (
     <div id='app' onMouseMove={handleMouseMove}>
       <Three resources={resources}/>
-      <Nav state={state} setState={setState}/>
       <Home cursorPos={cursorPos}/>   
-      <Curtain state={state} setState={setState}/>   
     </div>
-  )
-}
-function Curtain({state, setState}){
-  useEffect(()=>{
-    const timeout = setTimeout(()=>{
-      setState({...state, transition:false});
-    }, 1500)
-    return ()=>clearTimeout(timeout);
-  }, [state.transition])
-  return (
-    <motion.div id='curtain'
-      initial={{height:'0%'}}
-      animate={{height:state.transition?'100%':'0%'}}
-      transition={{duration:1}}
-    >
-    </motion.div>
-  )
-}
-function Nav({state, setState}){
-  return (
-    <motion.div id='nav'
-      initial={{height:'0em'}}
-      animate={{height:'6.5vh'}}
-      transition={{delay:2, duration:2.5}}
-    >
-      <NavElement text='PROJECTS' state={state} setState={setState}/>
-      <NavElement text='HOME' state={state} setState={setState}/>
-      <NavElement text='ABOUT' state={state} setState={setState}/>
-    </motion.div>
-    
-  )
-}
-function NavElement({text, state, setState}){
-  // const style ={
-  //   textDecoration:state.page===text ? 'underline' : 'none',
-  //   fontSize:state.page===text ? '2.5vh' : '2vh'
-  // }
-  const style = {
-    backgroundColor:state.page===text?'#00F4A2':'aquamarine'
-  }
-  return (
-    <motion.div className='nav_element' style={style}
-      initial={{opacity:0}}
-      animate={{opacity:1}}
-      transition={{delay:2.1, duration:0.5}}
-      onClick={()=>{
-        if (!state.transition)
-          setState({page:text, transition:state.page!==text})
-      }}
-    >
-      {text}
-    </motion.div>
   )
 }
 function Home({cursorPos}){
