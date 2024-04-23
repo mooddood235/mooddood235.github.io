@@ -49,12 +49,16 @@ function Home({cursorPos}){
 }
 function Nav(){
   return (
-    <div id='nav'>
+    <motion.div id='nav'
+    initial={{opacity:0}}
+    animate={{opacity:1}}
+    transition={{delay:2, duration:2}}
+    >
       <ul>
         <li><NavElement text='PROJECTS'/></li>
         <li><NavElement text='ABOUT'/></li>
       </ul>
-    </div>
+    </motion.div>
   )
 }
 function NavElement({text}){
