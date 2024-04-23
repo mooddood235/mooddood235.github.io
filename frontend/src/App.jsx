@@ -50,8 +50,10 @@ function Home({cursorPos}){
 function Nav(){
   return (
     <div id='nav'>
-      <NavElement text='PROJECTS'/>
-      <NavElement text='ABOUT'/>
+      <ul>
+        <li><NavElement text='PROJECTS'/></li>
+        <li><NavElement text='ABOUT'/></li>
+      </ul>
     </div>
   )
 }
