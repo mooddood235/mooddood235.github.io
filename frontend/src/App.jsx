@@ -58,10 +58,15 @@ function Nav(){
   )
 }
 function NavElement({text}){
+  const [state, setState] = useState('not-hovered');
   return (
-    <div className='nav_element'>
+    <motion.div className='nav_element'
+    onHoverStart={()=>setState('hovered')}
+    onHoverEnd={()=>setState('not-hovered')}
+    animate={{paddingLeft:state==='hovered'?'1em':'0em'}}
+    >
       {text}
-    </div>
+    </motion.div>
   )
 }
 function Three({resources}){
