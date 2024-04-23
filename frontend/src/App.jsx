@@ -42,7 +42,23 @@ function Home({cursorPos}){
           Mahmoud<br/>
           Zeidan
         </div>
+        <Nav/>
       </motion.div>
+    </div>
+  )
+}
+function Nav(){
+  return (
+    <div id='nav'>
+      <NavElement text='PROJECTS'/>
+      <NavElement text='ABOUT'/>
+    </div>
+  )
+}
+function NavElement({text}){
+  return (
+    <div className='nav_element'>
+      {text}
     </div>
   )
 }
@@ -85,8 +101,9 @@ function Three({resources}){
       var material = new THREE.MeshPhysicalMaterial({
         specularIntensity:1.0,
         roughness:0.0,
-        color:new THREE.Color(0.1, 0.1, 0.1),
-        envMap:resources.envTexture
+        color:new THREE.Color(0.0, 0.0, 0.0),
+        envMap:resources.envTexture,
+        wireframe:true
       });
       material.onBeforeCompile = function(shader){
         shader.vertexShader = resources.vertexStr;
