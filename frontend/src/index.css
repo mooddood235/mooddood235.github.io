@@ -43,8 +43,6 @@
 }
 #shadow{
   position: absolute;
-  top:10%;
-  left: -10%;
   z-index: -1;
   color:rgb(180, 180, 180);
 }
