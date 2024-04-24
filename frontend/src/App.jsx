@@ -17,7 +17,7 @@ function App({resources}){
   return (
     <div id='app' onMouseMove={handleMouseMove}>
       <Three resources={resources}/>
-      <Home cursorPos={cursorPos}/>   
+      <Home cursorPos={cursorPos}/>
     </div>
   )
 }

@@ -10,22 +10,17 @@
   font-family: 'JetBrains Mono ExtraBold';
   src: url('assets/fonts/ttf/JetBrainsMono-ExtraBold.ttf');
 }
-#root{
-  all:unset;
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  height: 100%;
-}
-#app{
-  width: 100%;
-  height: 100%;
-  font-family: 'JetBrains Mono';
-  /* background-color: rgb(75, 75, 75); */
+html{
+  all: unset;
+  width: 100vw;
+  height: 100vh;
   background-color: rgb(220, 220, 220);
+  font-family: 'JetBrains Mono';
+}
+body, #root, #app{
+  all: unset;
+  width: 100%;
+  height: 100%;
 }
 #home{
   width: 100%;
