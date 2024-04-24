@@ -63,8 +63,15 @@
   position: absolute;
   display: flex;
   flex-flow: column wrap;
-  gap: 10px;
+}
+#nav ul{
+  margin:0;
 }
 .nav_element{
+  display: inline-block;
   cursor:pointer;
+}
+.nav_element .underline{
+  height: 2px;
+  background-color: black;
 }

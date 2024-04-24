@@ -65,11 +65,16 @@ function NavElement({text}){
   const [state, setState] = useState('not-hovered');
   return (
     <motion.div className='nav_element'
-    onHoverStart={()=>setState('hovered')}
-    onHoverEnd={()=>setState('not-hovered')}
-    animate={{paddingLeft:state==='hovered'?'1em':'0em'}}
+      onHoverStart={()=>setState('hovered')}
+     onHoverEnd={()=>setState('not-hovered')}
+     animate={{marginLeft:state==='hovered'?'1em':'0em'}}
     >
       {text}
+      <motion.div className='underline'
+        initial={{width:'0%'}}
+        animate={{width:state==='hovered'?'100%':'0%'}}
+      >
+      </motion.div>
     </motion.div>
   )
 }
