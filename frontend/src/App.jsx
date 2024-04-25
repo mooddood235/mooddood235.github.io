@@ -16,7 +16,7 @@ function App({resources}){
   }
   return (
     <div id='app' onMouseMove={handleMouseMove}>
-      <Three resources={resources}/>
+      {/* <Three resources={resources}/> */}
       <Home cursorPos={cursorPos}/>
       <About/>
     </div>
@@ -25,11 +25,12 @@ function App({resources}){
 function About(){
   return (
     <div id='about'>
-      <div id='about_title'>About Me</div>
-      <div id='about_box'>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vulputate posuere elit, a accumsan nunc gravida vulputate. Nulla dictum ac nulla id scelerisque. Vivamus iaculis dictum lacus id commodo. Aliquam elementum faucibus erat sit amet faucibus. Maecenas tincidunt posuere arcu, id bibendum ipsum volutpat id. Aliquam vel blandit arcu. Vivamus volutpat rhoncus pretium. Pellentesque pellentesque elit in vehicula dignissim. In hac habitasse platea dictumst. Cras posuere ullamcorper metus sed volutpat. Aenean vel aliquam leo. Donec id lorem vitae ante aliquet porta.
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vulputate posuere elit, a accumsan nunc gravida vulputate. Nulla dictum ac nulla id scelerisque. Vivamus iaculis dictum lacus id commodo. Aliquam elementum faucibus erat sit amet faucibus. Maecenas tincidunt posuere arcu, id bibendum ipsum volutpat id. Aliquam vel blandit arcu. Vivamus volutpat rhoncus pretium. Pellentesque pellentesque elit in vehicula dignissim. In hac habitasse platea dictumst. Cras posuere ullamcorper metus sed volutpat. Aenean vel aliquam leo. Donec id lorem vitae ante aliquet porta.
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vulputate posuere elit, a accumsan nunc gravida vulputate. Nulla dictum ac nulla id scelerisque. Vivamus iaculis dictum lacus id commodo. Aliquam elementum faucibus erat sit amet faucibus. Maecenas tincidunt posuere arcu, id bibendum ipsum volutpat id. Aliquam vel blandit arcu. Vivamus volutpat rhoncus pretium. Pellentesque pellentesque elit in vehicula dignissim. In hac habitasse platea dictumst. Cras posuere ullamcorper metus sed volutpat. Aenean vel aliquam leo. Donec id lorem vitae ante aliquet porta.
+      <div id='about_content'>
+        <div id='about_title'>About Me</div>
+        <div id='about_textblock'>
+          My name is Mahmoud Zeidan. I am a 5<sup>th</sup> year computer science student
+          at the University of Toronto.
+        </div>
       </div>
     </div>
   )
