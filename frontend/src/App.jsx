@@ -74,8 +74,9 @@ function Nav(){
     transition={{delay:2, duration:2}}
     >
       <ul>
-        <li><NavElement text='PROJECTS'/></li>
         <li><NavElement text='ABOUT'/></li>
+        <li><NavElement text='SKILLS'/></li>
+        <li><NavElement text='PROJECTS'/></li>
       </ul>
     </motion.div>
   )
