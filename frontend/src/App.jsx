@@ -28,8 +28,18 @@ function About(){
       <div id='about_content'>
         <div id='about_title'>About Me</div>
         <div id='about_textblock'>
-          My name is Mahmoud Zeidan. I am a 5<sup>th</sup> year computer science student
-          at the University of Toronto.
+        Greetings! I'm Mahmoud Zeidan, currently pursuing my fifth year in Computer Science at
+        the University of Toronto. My love for logic, mathematics, and art finds its home in the world
+        of Computer Science, where I merge and manifest my passions into complex and innovative projects.
+        Whether I'm diving into the the world of graphics rendering, game development, web development,
+        or programming languages, I'm always on the lookout for new challenges and avenues of exploration.
+        <br/><br/>
+        Throughout my journey, I have tackled a diverse set of complex problems
+        in numerical approximation, memory management, data structures, parallel computing,
+        geometry processing, and many more. I have also gained proficiency in several CPU and GPU
+        programming languages such as C++, C#, Python, Javascript, GLSL, and HLSL.
+        <br/><br/>
+        Curious about my endeavors? Feel free to explore my projects page and GitHub. 
         </div>
       </div>
     </div>
