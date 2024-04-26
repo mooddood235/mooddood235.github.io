@@ -121,15 +121,12 @@ function Three({resources}){
     
     const object = new THREE.Mesh( geometry, material );
     object.position.z = -30;
-    object.position.x = 15;
-    object.position.y = -50;
-    object.rotation.y = MathUtils.degToRad(-15);
-    object.rotation.z = MathUtils.degToRad(-15);
-    object.rotation.x = MathUtils.degToRad(-15);
+    object.visible = false;
     scene.add(object);
     renderer.compile(scene, camera);
   
     var timeStart;
+    var rotationZ;
     render();
 
     function CreateGeometry(){
@@ -156,12 +153,23 @@ function Three({resources}){
       const time = performance.now() / 1000.0;
 
       if (state === 'hidden' && time >= 3.0){
+        rotationZ = MathUtils.degToRad(-15);
+        object.rotation.x = MathUtils.degToRad(-15);
+        object.visible = true;
         state = 'moveObject';
         timeStart = time;
       }
       if (state === 'moveObject'){
         if (material.userData.shader) material.userData.shader.uniforms.time.value = time;
-        object.rotation.z += MathUtils.degToRad(Math.sin(time) * 0.2);
+
+        const scrollT = window.scrollY / (document.documentElement.scrollHeight / 2);
+
+        object.rotation.y = MathUtils.degToRad(lerp(-15, 15, scrollT));
+        rotationZ += MathUtils.degToRad(Math.sin(time) * 0.2);
+        object.rotation.z = rotationZ;
+        
+        object.position.x = lerp(15, -19, scrollT);
+
         const t = (time - timeStart) / 2;
         if (t <= 1) object.position.y = lerp(-50, 0, easeOut(t));
       }
@@ -172,9 +180,6 @@ function Three({resources}){
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
-    });
-    window.addEventListener('scroll', function(){
-      console.log(window.scrollY);
     });
   }, []);
   return (
