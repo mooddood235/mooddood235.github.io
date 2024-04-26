@@ -28,17 +28,21 @@ function About(){
       <div id='about_content'>
         <div id='about_title'>About Me</div>
         <div id='about_textblock'>
-        Greetings! I'm <jb>Mahmoud Zeidan</jb>, currently pursuing my fifth year in Computer Science at
+        Greetings! I'm <JetBrainsBold text='Mahmoud Zeidan'/>, currently pursuing my fifth year in Computer Science at
         the University of Toronto. My love for logic, mathematics, and art finds its home in the world
         of Computer Science, where I merge and manifest my passions into complex and innovative projects.
-        Whether I'm diving into the the world of <jb>graphics rendering</jb>, <jb>game development</jb>, <jb>web development</jb>,
-        or <jb>programming languages</jb>, I'm always on the lookout for new challenges and avenues of exploration.
+        Whether I'm diving into the the world of <JetBrainsBold text='graphics rendering'/>
+        , <JetBrainsBold text='game development'/>, <JetBrainsBold text='web development'/>,
+        or <JetBrainsBold text='programming languages'/>, I'm always on the lookout for new challenges and avenues of exploration.
         <br/><br/>
         Curious about my endeavors? Feel free to explore my projects page and GitHub. 
         </div>
       </div>
     </div>
   )
+}
+function JetBrainsBold({text}){
+  return <div className='jetbrains_bold'>{text}</div>
 }
 function Home({cursorPos}){
   const topOffset = (cursorPos.y / window.innerHeight) * 2.0 - 1.0;
@@ -168,6 +172,9 @@ function Three({resources}){
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+    window.addEventListener('scroll', function(){
+      console.log(window.scrollY);
     });
   }, []);
   return (
