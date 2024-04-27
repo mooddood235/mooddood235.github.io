@@ -134,6 +134,7 @@ function Three({resources}){
       geometry.computeTangents();
       return geometry;
     }
+    THREE.ShaderChunk.meshphysical_frag
     function CreateMaterial(resources){
       var material = new THREE.MeshPhysicalMaterial({
         specularIntensity:1.0,
@@ -144,8 +145,18 @@ function Three({resources}){
       });
       material.onBeforeCompile = function(shader){
         shader.vertexShader = resources.vertexStr;
+        shader.fragmentShader = shader.fragmentShader
+        .replace(
+          'uniform float opacity;',
+          'uniform float opacity;\nuniform float normalBlend;\n'
+        )
+        .replace(
+          '}',
+          '\tgl_FragColor.rgb=mix(gl_FragColor.rgb, vNormal*0.5+0.5, normalBlend);\n}');
+
         shader.uniforms.time = {value:0.0};
         shader.uniforms.noiseBlend = {value:0.0};
+        shader.uniforms.normalBlend = {value:0.0};
         material.userData.shader = shader;
       }
       return material;
@@ -166,6 +177,7 @@ function Three({resources}){
         if (material.userData.shader){
           material.userData.shader.uniforms.time.value = time;
           material.userData.shader.uniforms.noiseBlend.value = scrollT;
+          material.userData.shader.uniforms.normalBlend.value = scrollT;
         }
 
 
