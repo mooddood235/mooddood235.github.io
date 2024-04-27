@@ -130,7 +130,7 @@ function Three({resources}){
     render();
 
     function CreateGeometry(){
-      const geometry = new THREE.TorusKnotGeometry(10, 3, 400, 27, 2,3);
+      const geometry = new THREE.TorusKnotGeometry(10, 3, 400*2.5, 27*2.5, 2,3);
       geometry.computeTangents();
       return geometry;
     }
@@ -145,6 +145,7 @@ function Three({resources}){
       material.onBeforeCompile = function(shader){
         shader.vertexShader = resources.vertexStr;
         shader.uniforms.time = {value:0.0};
+        shader.uniforms.noiseBlend = {value:0.0};
         material.userData.shader = shader;
       }
       return material;
@@ -160,15 +161,19 @@ function Three({resources}){
         timeStart = time;
       }
       if (state === 'moveObject'){
-        if (material.userData.shader) material.userData.shader.uniforms.time.value = time;
-
         const scrollT = window.scrollY / (document.documentElement.scrollHeight / 2);
+
+        if (material.userData.shader){
+          material.userData.shader.uniforms.time.value = time;
+          material.userData.shader.uniforms.noiseBlend.value = scrollT;
+        }
+
 
         object.rotation.y = MathUtils.degToRad(lerp(-15, 15, scrollT));
         rotationZ += MathUtils.degToRad(Math.sin(time) * 0.2);
         object.rotation.z = rotationZ;
         
-        object.position.x = lerp(15, -19, scrollT);
+        object.position.x = lerp(15, -15, scrollT);
 
         const t = (time - timeStart) / 2;
         if (t <= 1) object.position.y = lerp(-50, 0, easeOut(t));

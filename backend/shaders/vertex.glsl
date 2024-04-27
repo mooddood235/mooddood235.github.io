@@ -1,4 +1,6 @@
 uniform float time;
+uniform float noiseBlend;
+
 attribute vec3 tangent;
 
 varying vec3 vNormal;
@@ -9,6 +11,7 @@ const float strength = 0.8;
 const float freq = 0.25;
 
 float cnoise(vec3 P);
+float onoise(vec3 p);
 
 void main(){
   vec3 bitangent = normalize(cross(normal, tangent));
@@ -16,9 +19,24 @@ void main(){
   vec3 neighbour1 = position + tangent * offset;
   vec3 neighbour2 = position + bitangent * offset;
 
-  vec3 displacedPosition = position + normal * cnoise(position * freq + time) * strength;
-  vec3 displacedNeighbour1 = neighbour1 + normal * cnoise(neighbour1 * freq + time) * strength;
-  vec3 displacedNeighbour2 = neighbour2 + normal * cnoise(neighbour2 * freq + time) * strength;
+  float thisNoise = mix(
+    cnoise(position * freq + time) * strength,
+    onoise(position),
+    noiseBlend
+  );
+  float neighbour1Noise = mix(
+    cnoise(neighbour1 * freq + time) * strength,
+    onoise(neighbour1),
+    noiseBlend
+  );
+  float neighbour2Noise = mix(
+    cnoise(neighbour2 * freq + time) * strength,
+    onoise(neighbour2),
+    noiseBlend
+  );
+  vec3 displacedPosition = position + normal * thisNoise;
+  vec3 displacedNeighbour1 = neighbour1 + normal * neighbour1Noise;
+  vec3 displacedNeighbour2 = neighbour2 + normal * neighbour2Noise;
 
   vec3 displacedTangent = displacedNeighbour1 - displacedPosition;
   vec3 displacedBitangent = displacedNeighbour2 - displacedPosition;
@@ -102,4 +120,7 @@ float cnoise(vec3 P){
   vec2 n_yz = mix(n_z.xy, n_z.zw, fade_xyz.y);
   float n_xyz = mix(n_yz.x, n_yz.y, fade_xyz.x); 
   return 2.2 * n_xyz;
+}
+float onoise(vec3 p){
+  return cnoise(vec3(cnoise(p * 0.1 + time * 0.2) * 4.0)) * 2.0;
 }
