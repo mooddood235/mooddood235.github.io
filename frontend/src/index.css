@@ -10,13 +10,17 @@
   font-family: 'JetBrains Mono ExtraBold';
   src: url('assets/fonts/ttf/JetBrainsMono-ExtraBold.ttf');
 }
+@keyframes enableScroll {
+  100%{overflow-y:auto;}
+}
 html{
   all: unset;
   width: 100vw;
   height: 100vh;
   background-color: rgb(220, 220, 220);
   font-family: 'JetBrains Mono';
-  overflow-x: hidden;
+  overflow: hidden;
+  animation: enableScroll 0s 4s forwards;
 }
 body, #root, #app{
   all: unset;
