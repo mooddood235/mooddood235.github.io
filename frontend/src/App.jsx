@@ -172,7 +172,7 @@ function Three({resources}){
         timeStart = time;
       }
       if (state === 'moveObject'){
-        const scrollT = window.scrollY / (document.documentElement.scrollHeight / 2);
+        const scrollT = Math.min(window.scrollY / 750.0, 1.0);
 
         if (material.userData.shader){
           material.userData.shader.uniforms.time.value = time;
