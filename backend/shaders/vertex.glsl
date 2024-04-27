@@ -122,5 +122,5 @@ float cnoise(vec3 P){
   return 2.2 * n_xyz;
 }
 float onoise(vec3 p){
-  return cnoise(vec3(cnoise(p * 0.1 + time * 0.2) * 4.0)) * 2.0;
+  return cnoise(vec3(cnoise(p * 0.1 + time * 0.2) * 4.0)) * 1.8;
 }

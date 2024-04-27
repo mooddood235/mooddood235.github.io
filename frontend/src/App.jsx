@@ -130,7 +130,7 @@ function Three({resources}){
     render();
 
     function CreateGeometry(){
-      const geometry = new THREE.TorusKnotGeometry(10, 3, 400*2.5, 27*2.5, 2,3);
+      const geometry = new THREE.TorusKnotGeometry(10, 3, 300*10, 20*10, 2,3);
       geometry.computeTangents();
       return geometry;
     }
@@ -140,7 +140,7 @@ function Three({resources}){
         roughness:0.0,
         color:new THREE.Color(0.0, 0.0, 0.0),
         envMap:resources.envTexture,
-        wireframe:true
+        wireframe:false
       });
       material.onBeforeCompile = function(shader){
         shader.vertexShader = resources.vertexStr;
