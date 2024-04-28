@@ -177,7 +177,7 @@ function Three({resources}){
         if (material.userData.shader){
           material.userData.shader.uniforms.time.value = time;
           material.userData.shader.uniforms.noiseBlend.value = scrollT;
-          material.userData.shader.uniforms.normalBlend.value = scrollT;
+          material.userData.shader.uniforms.normalBlend.value = scrollT*scrollT;
         }
 
 
