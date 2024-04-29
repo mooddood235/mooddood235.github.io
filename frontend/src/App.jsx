@@ -130,7 +130,7 @@ function Three({resources}){
     render();
 
     function CreateGeometry(){
-      const geometry = new THREE.TorusKnotGeometry(10, 3, 300*10, 20*10, 2,3);
+      const geometry = new THREE.TorusKnotGeometry(10, 3, 300*6, 20*8, 2,3);
       geometry.computeTangents();
       return geometry;
     }
