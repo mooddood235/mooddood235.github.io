@@ -130,7 +130,7 @@ function Three({resources}){
     render();
 
     function CreateGeometry(){
-      const geometry = new THREE.TorusKnotGeometry(10, 3, 300*6, 20*8, 2,3);
+      const geometry = new THREE.TorusKnotGeometry(10, 3, 300*4, 20*4, 2,3);
       geometry.computeTangents();
       return geometry;
     }
@@ -148,15 +148,15 @@ function Three({resources}){
         shader.fragmentShader = shader.fragmentShader
         .replace(
           'uniform float opacity;',
-          'uniform float opacity;\nuniform float normalBlend;\n'
+          'uniform float opacity;\nuniform float colorBlend;\nvarying vec3 vColor;\n'
         )
         .replace(
           '}',
-          '\tgl_FragColor.rgb=mix(gl_FragColor.rgb, vNormal*0.5+0.5, normalBlend);\n}');
+          '\tgl_FragColor.rgb=mix(gl_FragColor.rgb, vColor, colorBlend);\n}');
 
         shader.uniforms.time = {value:0.0};
         shader.uniforms.noiseBlend = {value:0.0};
-        shader.uniforms.normalBlend = {value:0.0};
+        shader.uniforms.colorBlend = {value:0.0};
         material.userData.shader = shader;
       }
       return material;
@@ -177,7 +177,7 @@ function Three({resources}){
         if (material.userData.shader){
           material.userData.shader.uniforms.time.value = time;
           material.userData.shader.uniforms.noiseBlend.value = scrollT;
-          material.userData.shader.uniforms.normalBlend.value = scrollT*scrollT;
+          material.userData.shader.uniforms.colorBlend.value = scrollT*scrollT;
         }
 
 

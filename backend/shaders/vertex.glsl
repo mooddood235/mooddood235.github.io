@@ -5,6 +5,7 @@ attribute vec3 tangent;
 
 varying vec3 vNormal;
 varying vec3 vViewPosition;
+varying vec3 vColor;
 
 const float offset = 0.001;
 const float strength = 0.8;
@@ -44,6 +45,7 @@ void main(){
 
   vNormal = normalize(vec3(modelMatrix * vec4(displacedNormal, 0.0)));
   vViewPosition = cameraPosition;
+  vColor = normal * 0.5 + 0.5;
   gl_Position = projectionMatrix * modelViewMatrix * vec4(displacedPosition, 1.0);
 }
 
