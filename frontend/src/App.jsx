@@ -134,49 +134,23 @@ function Three({resources}){
       geometry.computeTangents();
       return geometry;
     }
+    THREE.ShaderChunk.meshphysical_frag
     function CreateMaterial(resources){
-      // var material = new THREE.MeshPhysicalMaterial({
-      //   specularIntensity:1.0,
-      //   roughness:0.0,
-      //   color:new THREE.Color(0.0, 0.0, 0.0),
-      //   envMap:resources.envTexture,
-      //   wireframe:false
-      // });
-      var material = new THREE.ShaderMaterial({
-        vertexShader:resources.vertexStr,
-        fragmentShader:resources.fragmentStr,
-        uniforms:{
-          diffuse:{value:new THREE.Vector3(1.0, 0.0, 0.0)},
-          emissive:{value:new THREE.Vector3(0.0, 0.0, 0.0)},
-          roughness:{value:0.0},
-          metalness:{value:0.0},
-          opacity:{value:1.0},
-          specularIntensity:{value:1.0},
-
-          time:{value:0.0},
-          noiseBlend:{value:0.0},
-          colorBlend:{value:0.0}
-        }
+      var material = new THREE.MeshPhysicalMaterial({
+        specularIntensity:1.0,
+        color:new THREE.Color(0.0, 0.0, 0.0),
+        roughness:0.0,
+        envMap:resources.envTexture
       });
+      material.onBeforeCompile = function(shader){
+        shader.vertexShader = resources.vertexStr;
+        shader.fragmentShader = resources.fragmentStr;
 
-      // material.onBeforeCompile = function(shader){
-      //   shader.vertexShader = resources.vertexStr;
-      //   shader.fragmentShader = resources.fragmentStr;
-      //   // shader.fragmentShader = shader.fragmentShader
-      //   // .replace(
-      //   //   'uniform float opacity;',
-      //   //   'uniform float opacity;\nuniform float colorBlend;\nvarying vec3 vColor;\n'
-      //   // )
-      //   // .replace(
-      //   //   '}',
-      //   //   '\tgl_FragColor.rgb=mix(gl_FragColor.rgb, vColor, colorBlend);\n}');
-
-      //   shader.uniforms.time = {value:0.0};
-      //   shader.uniforms.noiseBlend = {value:0.0};
-      //   shader.uniforms.colorBlend = {value:0.0};
-      //   material.userData.shader = shader;
-      //   //console.log(shader.fragmentShader);
-      // }
+        shader.uniforms.time = {value:0.0};
+        shader.uniforms.noiseBlend = {value:0.0};
+        shader.uniforms.colorBlend = {value:0.0};
+        material.userData.shader = shader;
+      }
       return material;
     }
     function render(){
@@ -192,10 +166,10 @@ function Three({resources}){
       if (state === 'moveObject'){
         const scrollT = Math.min(window.scrollY / 750.0, 1.0);
 
-        if (material.uniforms){
-          material.uniforms.time.value = time;
-          material.uniforms.noiseBlend.value = scrollT;
-          material.uniforms.colorBlend.value = scrollT*scrollT;
+        if (material.userData.shader){
+          material.userData.shader.uniforms.time.value = time;
+          material.userData.shader.uniforms.noiseBlend.value = scrollT;
+          material.userData.shader.uniforms.colorBlend.value = scrollT;
         }
 
 

@@ -8,7 +8,9 @@ uniform float roughness;
 uniform float metalness;
 uniform float opacity;
 uniform float colorBlend;
+
 varying vec3 vColor;
+
 #ifdef IOR
 	uniform float ior;
 #endif
@@ -121,5 +123,5 @@ void main() {
 	#include <fog_fragment>
 	#include <premultiplied_alpha_fragment>
 	#include <dithering_fragment>
-	gl_FragColor.rgb=mix(gl_FragColor.rgb, vColor, colorBlend);
+    gl_FragColor.rgb = mix(gl_FragColor.rgb, vColor, min(colorBlend, 0.93));
 }
