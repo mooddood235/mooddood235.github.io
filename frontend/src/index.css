@@ -27,6 +27,12 @@ body, #root, #app{
   width: 100%;
   height: 100%;
 }
+#blur{
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  backdrop-filter: blur(5px);
+}
 #home{
   width: 100%;
   height: 100%;
