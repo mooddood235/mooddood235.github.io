@@ -19,6 +19,14 @@ function App({resources}){
       <Three resources={resources}/>
       <Home cursorPos={cursorPos}/>
       <About/>
+      <Skills/>
+    </div>
+  )
+}
+function Skills(){
+  return (
+    <div id='skills'>
+
     </div>
   )
 }
@@ -121,13 +129,21 @@ function Three({resources}){
     
     const object = new THREE.Mesh( geometry, material );
     object.position.z = -30;
+    object.rotation.x = MathUtils.degToRad(-15);
+    var rotationZ = MathUtils.degToRad(-15);
     object.visible = false;
     scene.add(object);
+
     renderer.compile(scene, camera);
-  
+    
     var timeStart;
-    var rotationZ;
-    render();
+    setTimeout(()=>{
+      requestAnimationFrame((timeStamp)=>{
+        timeStart = timeStamp / 1000.0;
+        object.visible = true;
+        requestAnimationFrame(render);
+      })
+    }, 2000);
 
     function CreateGeometry(){
       const geometry = new THREE.TorusKnotGeometry(10, 3, 300*4, 20*4, 2,3);
@@ -153,35 +169,23 @@ function Three({resources}){
       }
       return material;
     }
-    function render(){
-      const time = performance.now() / 1000.0;
+    function render(timeStamp){
+      timeStamp /= 1000.0;
+      const scrollT = Math.min(window.scrollY / 750.0, 1.0);
 
-      if (state === 'hidden' && time >= 3.0){
-        rotationZ = MathUtils.degToRad(-15);
-        object.rotation.x = MathUtils.degToRad(-15);
-        object.visible = true;
-        state = 'moveObject';
-        timeStart = time;
+      if (material.userData.shader){
+        material.userData.shader.uniforms.time.value = timeStamp;
+        material.userData.shader.uniforms.noiseBlend.value = scrollT;
+        material.userData.shader.uniforms.colorBlend.value = scrollT;
       }
-      if (state === 'moveObject'){
-        const scrollT = Math.min(window.scrollY / 750.0, 1.0);
+      object.rotation.y = MathUtils.degToRad(lerp(-15, 15, scrollT));
+      rotationZ += MathUtils.degToRad(Math.sin(timeStamp) * 0.2);
+      object.rotation.z = rotationZ;
+      object.position.x = lerp(15, -15, scrollT);
 
-        if (material.userData.shader){
-          material.userData.shader.uniforms.time.value = time;
-          material.userData.shader.uniforms.noiseBlend.value = scrollT;
-          material.userData.shader.uniforms.colorBlend.value = scrollT;
-        }
-
-
-        object.rotation.y = MathUtils.degToRad(lerp(-15, 15, scrollT));
-        rotationZ += MathUtils.degToRad(Math.sin(time) * 0.2);
-        object.rotation.z = rotationZ;
-        
-        object.position.x = lerp(15, -15, scrollT);
-
-        const t = (time - timeStart) / 2;
-        if (t <= 1) object.position.y = lerp(-50, 0, easeOut(t));
-      }
+      const t = (timeStamp - timeStart) / 2;
+      if (t <= 1) object.position.y = lerp(-50, 0, easeOut(t));
+      
       renderer.render(scene, camera);
       requestAnimationFrame(render);
     }
