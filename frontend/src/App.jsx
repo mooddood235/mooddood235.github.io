@@ -24,9 +24,35 @@ function App({resources}){
   )
 }
 function Skills(){
+  const folderPath = 'src/assets/skills_pictures';
+  const fileNames = [
+    'C++.png', 'C_sharp.png', 'C.png', 'Python.png', 'JavaScript.png', 'Racket.png'
+  ];
+
   return (
     <div id='skills'>
-
+      <div id='skills_box'>
+        <div id='skills_title'>
+          Skills
+        </div>
+        <SkillsGallery folderPath={folderPath} fileNames={fileNames}/>
+      </div>
+    </div>
+  )
+}
+function SkillsGallery({folderPath, fileNames}){
+  return (
+    <div className='skills_gallery'>
+      {fileNames.map((item, index)=>(
+        <SkillsGalleryBox key={index} path={folderPath+'/'+item}/>
+      ))}
+    </div>
+  )
+}
+function SkillsGalleryBox({path}){
+  return (
+    <div className='skills_gallery_box'>
+        <img src={path}/>
     </div>
   )
 }
@@ -184,7 +210,6 @@ function Three({resources}){
       rotationZ += MathUtils.degToRad(Math.sin(timeStamp) * 0.2);
       object.rotation.z = rotationZ;
       object.position.x = lerp(15, -15, scrollT0);
-
       // Phase 2
       if (scrollT0 === 1.0){
         object.position.x = lerp(-15, 0, easeOut(scrollT1));
@@ -194,7 +219,6 @@ function Three({resources}){
         camera.fov = lerp(60, 10, Math.pow(scrollT1, 5.0));
         camera.updateProjectionMatrix();
       }
-
       const t = (timeStamp - timeStart) / 2;
       if (t <= 1) object.position.y = lerp(-50, 0, easeOut(t));
 
