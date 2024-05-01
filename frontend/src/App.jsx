@@ -216,7 +216,7 @@ function Three({resources}){
         object.rotation.x = MathUtils.degToRad(lerp(-15, 0, scrollT1));
         object.rotation.y = MathUtils.degToRad(lerp(15, 0, scrollT1));
         object.rotation.z = MathUtils.degToRad(lerp(MathUtils.radToDeg(rotationZ), 0.0, scrollT1));
-        camera.fov = lerp(60, 10, Math.pow(scrollT1, 5.0));
+        camera.fov = lerp(60, 10, Math.pow(scrollT1, 4.0));
         camera.updateProjectionMatrix();
       }
       const t = (timeStamp - timeStart) / 2;

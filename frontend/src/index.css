@@ -103,14 +103,14 @@ body, #root, #app{
   justify-content: center;
 }
 #skills_title{
+  text-align: center;
   font-size: 7vmax;
+  margin-bottom: 7px;
 }
 #skills_box{
   position: relative;
   width: 50%;
   height: 80%;
-  backdrop-filter: blur(6px);
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .skills_gallery{
   display: flex;
@@ -125,7 +125,6 @@ body, #root, #app{
   justify-content: center;
   width: 70px;
   height: 70px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 .skills_gallery_box img{
   width: 85%;
