@@ -171,21 +171,33 @@ function Three({resources}){
     }
     function render(timeStamp){
       timeStamp /= 1000.0;
-      const scrollT = Math.min(window.scrollY / 750.0, 1.0);
+      const scrollT0 = MathUtils.clamp(window.scrollY / 750.0, 0.0, 1.0);
+      const scrollT1 = MathUtils.clamp(window.scrollY / 750.0 - 1.0, 0.0, 1.0);
 
       if (material.userData.shader){
         material.userData.shader.uniforms.time.value = timeStamp;
-        material.userData.shader.uniforms.noiseBlend.value = scrollT;
-        material.userData.shader.uniforms.colorBlend.value = scrollT;
+        material.userData.shader.uniforms.noiseBlend.value = scrollT0;
+        material.userData.shader.uniforms.colorBlend.value = scrollT0;
       }
-      object.rotation.y = MathUtils.degToRad(lerp(-15, 15, scrollT));
+      // Phase 1
+      object.rotation.y = MathUtils.degToRad(lerp(-15, 15, scrollT0));
       rotationZ += MathUtils.degToRad(Math.sin(timeStamp) * 0.2);
       object.rotation.z = rotationZ;
-      object.position.x = lerp(15, -15, scrollT);
+      object.position.x = lerp(15, -15, scrollT0);
+
+      // Phase 2
+      if (scrollT0 === 1.0){
+        object.position.x = lerp(-15, 0, easeOut(scrollT1));
+        object.rotation.x = MathUtils.degToRad(lerp(-15, 0, scrollT1));
+        object.rotation.y = MathUtils.degToRad(lerp(15, 0, scrollT1));
+        object.rotation.z = MathUtils.degToRad(lerp(MathUtils.radToDeg(rotationZ), 0.0, scrollT1));
+        camera.fov = lerp(60, 10, Math.pow(scrollT1, 5.0));
+        camera.updateProjectionMatrix();
+      }
 
       const t = (timeStamp - timeStart) / 2;
       if (t <= 1) object.position.y = lerp(-50, 0, easeOut(t));
-      
+
       renderer.render(scene, camera);
       requestAnimationFrame(render);
     }
