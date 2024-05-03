@@ -31,6 +31,7 @@ function Skills(){
     ['C.png', 'C'],
     ['Python.png', 'Python'],
     ['JavaScript.png', 'JavaScript'],
+    ['PostgreSQL.png', 'PostgreSQL'],
     ['Racket.png', 'Racket'],
     ['Haskell.png', 'Haskell']
   ];
@@ -45,7 +46,9 @@ function Skills(){
     ['Unity.png', 'Unity'],
     ['Blender.png', 'Blender'],
     ['VS.png', 'VisualStudio'],
-    ['VSCode.webp', 'VSCode']
+    ['VSCode.webp', 'VSCode'],
+    ['Git.png', 'Git'],
+    ['GitHub.png', 'GitHub']
   ];
 
   return (
