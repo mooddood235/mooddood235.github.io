@@ -102,11 +102,11 @@ body, #root, #app{
   height:100%;
   align-items: center;
   justify-content: center;
+  font-family: 'JetBrains Mono Bold';
 }
 #skills_title{
   text-align: center;
   font-size: 7vmax;
-  font-family: 'JetBrains Mono Bold';
 }
 .skills_subtitle{
   text-align: center;
@@ -132,6 +132,7 @@ body, #root, #app{
   align-items: center;
   justify-content: center;
   font-size: 0.9vmax;
+  font-family: 'JetBrains Mono ExtraBold';
 }
 .skills_gallery_box img{
   height: 70px;
