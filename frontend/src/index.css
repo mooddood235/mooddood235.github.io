@@ -85,6 +85,7 @@ body, #root, #app{
 }
 #about_title{
   font-size: 7vmax;
+  font-family: 'JetBrains Mono Bold';
 }
 #about_textblock{
   width: 30em;
@@ -105,7 +106,13 @@ body, #root, #app{
 #skills_title{
   text-align: center;
   font-size: 7vmax;
-  margin-bottom: 7px;
+  font-family: 'JetBrains Mono Bold';
+}
+.skills_subtitle{
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-size: 2vmax;
 }
 #skills_box{
   position: relative;
@@ -117,17 +124,18 @@ body, #root, #app{
   flex-flow: row wrap;
   align-items: center;
   justify-content: center;
-  gap: 30px;
+  gap: 50px;
 }
 .skills_gallery_box{
   display: flex;
+  flex-flow: column wrap;
   align-items: center;
   justify-content: center;
-  width: 70px;
-  height: 70px;
+  font-size: 0.9vmax;
 }
 .skills_gallery_box img{
-  width: 85%;
-  height: auto;
+  height: 70px;
+  width: auto;
   display: block;
+  margin-bottom: 5px;
 }

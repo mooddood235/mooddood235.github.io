@@ -25,9 +25,20 @@ function App({resources}){
 }
 function Skills(){
   const folderPath = 'src/assets/skills_pictures';
-  const fileNames = [
-    'C++.png', 'C_sharp.png', 'C.png', 'Python.png', 'JavaScript.png', 'Racket.png'
+  const languagesFileNames = [
+    ['C++.png', 'C++'],
+    ['Csharp.png', 'C#'],
+    ['C.png', 'C'],
+    ['Python.png', 'Python'],
+    ['JavaScript.png', 'JavaScript'],
+    ['Racket.png', 'Racket']
   ];
+  const librariesFileNames = [
+    ['OpenGL.png', 'OpenGL'],
+    ['React.webp', 'React'],
+    ['NodeJS.png', 'NodeJS'],
+    ['Three.png', 'ThreeJS']
+  ]
 
   return (
     <div id='skills'>
@@ -35,8 +46,18 @@ function Skills(){
         <div id='skills_title'>
           Skills
         </div>
-        <SkillsGallery folderPath={folderPath} fileNames={fileNames}/>
+        <SkillsSubtitle title='Programming Languages'/>
+        <SkillsGallery folderPath={folderPath} fileNames={languagesFileNames}/>
+        <SkillsSubtitle title='Libraries'/>
+        <SkillsGallery folderPath={folderPath} fileNames={librariesFileNames}/>
       </div>
+    </div>
+  )
+}
+function SkillsSubtitle({title}){
+  return (
+    <div className='skills_subtitle'>
+      {title}
     </div>
   )
 }
@@ -44,15 +65,16 @@ function SkillsGallery({folderPath, fileNames}){
   return (
     <div className='skills_gallery'>
       {fileNames.map((item, index)=>(
-        <SkillsGalleryBox key={index} path={folderPath+'/'+item}/>
+        <SkillsGalleryBox key={index} path={folderPath +'/'+ item[0]} name={item[1]}/>
       ))}
     </div>
   )
 }
-function SkillsGalleryBox({path}){
+function SkillsGalleryBox({path, name}){
   return (
     <div className='skills_gallery_box'>
         <img src={path}/>
+        {name}
     </div>
   )
 }
