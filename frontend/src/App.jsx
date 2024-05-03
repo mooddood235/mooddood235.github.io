@@ -31,14 +31,22 @@ function Skills(){
     ['C.png', 'C'],
     ['Python.png', 'Python'],
     ['JavaScript.png', 'JavaScript'],
-    ['Racket.png', 'Racket']
+    ['Racket.png', 'Racket'],
+    ['Haskell.png', 'Haskell']
   ];
   const librariesFileNames = [
     ['OpenGL.png', 'OpenGL'],
+    ['GLTF.png', 'GLTF'],
     ['React.webp', 'React'],
     ['NodeJS.png', 'NodeJS'],
     ['Three.png', 'ThreeJS']
-  ]
+  ];
+  const toolsFileNames = [
+    ['Unity.png', 'Unity'],
+    ['Blender.png', 'Blender'],
+    ['VS.png', 'VisualStudio'],
+    ['VSCode.webp', 'VSCode']
+  ];
 
   return (
     <div id='skills'>
@@ -48,8 +56,10 @@ function Skills(){
         </div>
         <SkillsSubtitle title='Programming Languages'/>
         <SkillsGallery folderPath={folderPath} fileNames={languagesFileNames}/>
-        <SkillsSubtitle title='Libraries'/>
+        <SkillsSubtitle title='Libraries and Specifications'/>
         <SkillsGallery folderPath={folderPath} fileNames={librariesFileNames}/>
+        <SkillsSubtitle title='Tools and Software'/>
+        <SkillsGallery folderPath={folderPath} fileNames={toolsFileNames}/>
       </div>
     </div>
   )
