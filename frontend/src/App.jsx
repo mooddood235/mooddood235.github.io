@@ -232,8 +232,9 @@ function Three({resources}){
     }
     function render(timeStamp){
       timeStamp /= 1000.0;
-      const scrollT0 = MathUtils.clamp(window.scrollY / 750.0, 0.0, 1.0);
-      const scrollT1 = MathUtils.clamp(window.scrollY / 750.0 - 1.0, 0.0, 1.0);
+      console.log(window.innerHeight);
+      const scrollT0 = MathUtils.clamp(window.scrollY / window.innerHeight, 0.0, 1.0);
+      const scrollT1 = MathUtils.clamp(window.scrollY / window.innerHeight - 1.0, 0.0, 1.0);
 
       if (material.userData.shader){
         material.userData.shader.uniforms.time.value = timeStamp;
