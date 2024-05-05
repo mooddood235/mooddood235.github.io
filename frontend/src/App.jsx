@@ -31,6 +31,8 @@ function Skills(){
     ['C.png', 'C'],
     ['Python.png', 'Python'],
     ['JavaScript.png', 'JavaScript'],
+    ['HTML.png', 'HTML'],
+    ['CSS.png', 'CSS'],
     ['PostgreSQL.png', 'PostgreSQL'],
     ['Racket.png', 'Racket'],
     ['Haskell.png', 'Haskell']
@@ -175,8 +177,6 @@ function Three({resources}){
   const canvasRef = useRef(null);
   
   useEffect(()=>{  
-    var state = 'hidden';
-
     const renderer = new THREE.WebGLRenderer({alpha:true}); 
     renderer.setSize(window.innerWidth, window.innerHeight);
     canvasRef.current.appendChild(renderer.domElement);
