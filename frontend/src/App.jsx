@@ -20,6 +20,27 @@ function App({resources}){
       <Home cursorPos={cursorPos}/>
       <About/>
       <Skills/>
+      <Projects/>
+    </div>
+  )
+}
+function Projects(){
+  return (
+    <div id='projects'>
+      <div id='projects_showcase'>
+        <Project title='Atrium'/>
+        <Project title='MyCraft'/>
+        <Project title='PotentialPotato'/>
+      </div>
+    </div>
+  )
+}
+function Project({title}){
+  return (
+    <div className='project'>
+      <div className='project_title'>
+        {title}
+      </div>
     </div>
   )
 }
@@ -232,7 +253,6 @@ function Three({resources}){
     }
     function render(timeStamp){
       timeStamp /= 1000.0;
-      console.log(window.innerHeight);
       const scrollT0 = MathUtils.clamp(window.scrollY / window.innerHeight * (5/4), 0.0, 1.0);
       const scrollT1 = MathUtils.clamp(window.scrollY / window.innerHeight * (5/4) - (3/2), 0.0, 1.0);
 
