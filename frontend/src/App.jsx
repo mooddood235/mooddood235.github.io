@@ -25,22 +25,35 @@ function App({resources}){
   )
 }
 function Projects(){
+  const atriumImages = [
+    'https://github.com/mooddood235/Atrium/assets/62807754/beb7890d-c105-47b4-bbcb-379d67a44754',
+    'https://github.com/mooddood235/Atrium/assets/62807754/6506b029-5107-4045-ad1b-a7421d825bbd'
+  ];
+
   return (
     <div id='projects'>
       <div id='projects_showcase'>
-        <Project title='Atrium'/>
-        <Project title='MyCraft'/>
-        <Project title='PotentialPotato'/>
+        <Project title='Atrium' images={atriumImages}/>
+        <Project title='MyCraft' images={[]}/>
+        <Project title='PotentialPotato' images={[]}/>
       </div>
     </div>
   )
 }
-function Project({title}){
+function Project({title, images}){
   return (
     <div className='project'>
-      <div className='project_title'>
-        {title}
-      </div>
+      <div className='project_title'>{title}</div>
+      <ProjectImageShowcase images={images}/>
+    </div>
+  )
+}
+function ProjectImageShowcase({images}){
+  return (
+    <div className='project_image_showcase'>
+      {images.map((item, index)=>(
+        <img key={index} src={item}/>
+      ))}
     </div>
   )
 }
