@@ -50,10 +50,15 @@ function Projects(){
   )
 }
 function Project({name, desc, images}){
+  function linkClickHandler(){
+    window.open(`https://github.com/mooddood235/${name}`);
+  }
   return (
     <div className='project'>
       <div className='project_name'>{name}</div>
-      <div className='project_link'><div className='fa fa-github'/></div>
+      <div onClick={linkClickHandler} className='project_link'>
+        <div className='fa fa-github'/>
+      </div>
       <div className='project_description'>{desc}</div>
       <ProjectImages images={images}/>
     </div>
