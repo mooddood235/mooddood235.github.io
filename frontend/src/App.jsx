@@ -17,6 +17,30 @@ function App({resources}){
       <Home cursorPos={cursorPos}/>
       <About/>
       <Skills/>
+      <Projects/>
+    </div>
+  )
+}
+function Projects(){
+  return (
+    <div id='projects'>
+      <div id='projects_title'>Projects</div>
+      <div id='projects_showcase'>
+        <Project name='Atrium' desc='A GPU Accelerated Ray Tracer written in GLSL'/>
+        <Project name='Atrium' desc='A GPU Accelerated Ray Tracer written in GLSL'/>
+        <Project name='Atrium' desc='A GPU Accelerated Ray Tracer written in GLSL'/>
+        <Project name='Atrium' desc='A GPU Accelerated Ray Tracer written in GLSL'/>
+        <Project name='Atrium' desc='A GPU Accelerated Ray Tracer written in GLSL'/>
+        <Project name='Atrium' desc='A GPU Accelerated Ray Tracer written in GLSL'/>
+      </div>
+    </div>
+  )
+}
+function Project({name, desc}){
+  return (
+    <div className='project'>
+      <div className='project_name'>{name}</div>
+      <div>{desc}</div>
     </div>
   )
 }
