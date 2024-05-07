@@ -27,19 +27,12 @@ function App({resources}){
 function Projects(){
   const atriumImages = [
     'https://github.com/mooddood235/Atrium/assets/62807754/beb7890d-c105-47b4-bbcb-379d67a44754',
-    'https://github.com/mooddood235/Atrium/assets/62807754/6506b029-5107-4045-ad1b-a7421d825bbd'
+    'https://github.com/mooddood235/Atrium/assets/62807754/6506b029-5107-4045-ad1b-a7421d825bbd',
+    'https://github.com/mooddood235/Atrium/assets/62807754/27bb77d2-aa7d-4556-aed3-3b83dfd99470'
   ];
   const atriumDesc = `
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed justo tortor, auctor vitae semper et, ultricies sed orci. Proin gravida at ligula sed mollis. Nulla dictum vestibulum mi vitae lobortis. Nullam vulputate elit ac ligula eleifend convallis. Proin maximus dui sed lacus suscipit pellentesque. Vivamus ut viverra neque, eu aliquam enim. Quisque posuere sem vel metus consectetur, eu sollicitudin massa euismod. Aliquam condimentum, massa in dapibus posuere, eros mi venenatis nisl, ac porta sapien enim sed elit. Ut id rhoncus felis. Fusce nisl dolor, tincidunt ut tortor sed, aliquam suscipit massa. Maecenas ultricies varius tempus. Nunc placerat, nunc eget tincidunt maximus, nibh eros dignissim felis, at tincidunt metus enim ac enim. In sodales vestibulum quam, eu venenatis nisl maximus ac.
-
-  Suspendisse dapibus venenatis lectus ut auctor. Nullam pretium nec elit ut tincidunt. Integer varius odio sed magna sollicitudin commodo. Nulla eget enim nisi. Fusce consequat nibh in nibh pulvinar molestie. Integer rhoncus elit sed tellus molestie congue. Ut a magna vel augue laoreet consequat sit amet vitae lacus. Suspendisse ante arcu, molestie nec dictum sit amet, elementum quis ex. Morbi hendrerit feugiat eros, ac auctor ipsum scelerisque sed. Morbi venenatis est non lacinia dapibus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aliquam felis mi, malesuada sit amet tellus et, viverra sodales justo. Donec tincidunt ex enim, id vehicula neque commodo porta.
-  
-  Proin interdum posuere ligula eget fringilla. Morbi augue quam, faucibus eu viverra eu, lacinia eget lectus. Donec dignissim sem egestas erat varius, vitae condimentum metus aliquet. Cras massa enim, malesuada vitae neque eu, feugiat pulvinar tellus. Mauris commodo ligula at imperdiet rhoncus. Aenean vitae ante ac felis eleifend tincidunt a in lectus. Vivamus vitae lacus vitae lacus pharetra facilisis. Curabitur pharetra eget lorem vel ullamcorper. Nam bibendum ante quis enim ultrices, eget rutrum orci rutrum. Etiam vel tellus sem. Suspendisse venenatis orci ut viverra ornare. Ut ligula ipsum, laoreet vel faucibus a, volutpat quis nulla. Ut lectus dolor, semper in elementum vel, varius in nisi. Maecenas aliquam mollis enim sed accumsan. Duis odio libero, egestas eu commodo sit amet, efficitur vel quam.
-  
-  Proin pretium a enim sed pulvinar. Morbi ornare iaculis tellus in malesuada. Vivamus quis posuere dui, id fringilla eros. Sed condimentum enim ac mauris venenatis bibendum. Nullam vestibulum condimentum rhoncus. In tristique laoreet dolor, eget dignissim magna pulvinar eu. Proin ante leo, sodales id mauris non, lacinia finibus mauris. Donec quam augue, accumsan vitae erat dapibus, pellentesque luctus elit.
-  
-  Integer commodo elit tortor, a convallis ex porta a. Aliquam eu mi varius, consequat enim ac, auctor ligula. In eget rhoncus sem. Proin aliquet aliquet leo, sit amet suscipit libero ultrices a. Nam efficitur est at turpis lacinia interdum. In lobortis eros ac nibh eleifend, quis dignissim neque semper. Suspendisse lorem justo, imperdiet eget mi rutrum, volutpat scelerisque orci.
-  `;
+  Atrium is a GPU accelerated path tracer written in GLSL.
+  `
 
   return (
     <div id='projects'>
@@ -55,8 +48,9 @@ function Project({title, images, desc}){
   return (
     <div className='project'>
       <div className='project_title'>{title}</div>
+      <div className='project_title_seperator'/>
       <ProjectImageShowcase images={images}/>
-      {/* <div className='project_description'>{desc}</div> */}
+      <div className='project_description'>{desc}</div>
     </div>
   )
 }
