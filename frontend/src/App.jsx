@@ -20,49 +20,10 @@ function App({resources}){
       <Home cursorPos={cursorPos}/>
       <About/>
       <Skills/>
-      <Projects/>
     </div>
   )
 }
-function Projects(){
-  const atriumImages = [
-    'https://github.com/mooddood235/Atrium/assets/62807754/beb7890d-c105-47b4-bbcb-379d67a44754',
-    'https://github.com/mooddood235/Atrium/assets/62807754/6506b029-5107-4045-ad1b-a7421d825bbd',
-    'https://github.com/mooddood235/Atrium/assets/62807754/27bb77d2-aa7d-4556-aed3-3b83dfd99470'
-  ];
-  const atriumDesc = `
-  Atrium is a GPU accelerated path tracer written in GLSL.
-  `
 
-  return (
-    <div id='projects'>
-      <div id='projects_showcase'>
-        <Project title='Atrium' images={atriumImages} desc={atriumDesc}/>
-        <Project title='MyCraft' images={[]}/>
-        <Project title='PotentialPotato' images={[]}/>
-      </div>
-    </div>
-  )
-}
-function Project({title, images, desc}){
-  return (
-    <div className='project'>
-      <div className='project_title'>{title}</div>
-      <div className='project_title_seperator'/>
-      <ProjectImageShowcase images={images}/>
-      <div className='project_description'>{desc}</div>
-    </div>
-  )
-}
-function ProjectImageShowcase({images}){
-  return (
-    <div className='project_image_showcase'>
-      {images.map((item, index)=>(
-        <img key={index} src={item}/>
-      ))}
-    </div>
-  )
-}
 function Skills(){
   const folderPath = 'src/assets/skills_pictures';
   const languagesFileNames = [
