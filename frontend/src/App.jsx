@@ -22,22 +22,29 @@ function App({resources}){
   )
 }
 function Projects(){
-  const desc='A GPU Accelerated Ray Tracer written in GLSL';
-  const images = [
+  const atriumImages = [
     'https://github.com/mooddood235/Atrium/assets/62807754/17e96540-e867-493f-92f1-31be59419331',
     'https://github.com/mooddood235/Atrium/assets/62807754/beb7890d-c105-47b4-bbcb-379d67a44754',
-    'https://github.com/mooddood235/Atrium/assets/62807754/27bb77d2-aa7d-4556-aed3-3b83dfd99470'
+    'https://github.com/mooddood235/Atrium/assets/62807754/27bb77d2-aa7d-4556-aed3-3b83dfd99470',
+    'https://github.com/mooddood235/Atrium/assets/62807754/f69eba2e-00cb-4ed3-a765-fbb59e1f73c7',
+    'https://github.com/mooddood235/Atrium/assets/62807754/9220260e-4bda-4e71-9172-a84ff2507838',
+    'https://github.com/mooddood235/Atrium/assets/62807754/0617baa8-8c7d-452a-8b04-f57d980c4ec2',
+    'https://github.com/mooddood235/Atrium/assets/62807754/6506b029-5107-4045-ad1b-a7421d825bbd',
+    'https://github.com/mooddood235/Atrium/assets/62807754/375ceb78-53f5-4a02-9ca7-0d98b2238f62',
+    'https://github.com/mooddood235/Atrium/assets/62807754/1576cc34-b7f7-4ca6-ad61-4a0bc96b5d27'
   ];
-
+  const myCraftImages = [
+    'https://github.com/mooddood235/MyCraft/assets/62807754/c87498ae-8652-4ab9-b1cd-6a7993b832b8',
+    'https://github.com/mooddood235/MyCraft/assets/62807754/3dd3f9cb-edd5-4281-a455-71eccd0aeaea',
+    'https://github.com/mooddood235/MyCraft/assets/62807754/1d1f1c30-e0cc-4ca7-a645-3cbb73c8d235',
+    'https://github.com/mooddood235/MyCraft/assets/62807754/6106f9a3-35de-4df6-a683-ff50a7b6dd2e'
+  ];
   return (
     <div id='projects'>
       <div id='projects_title'>Projects</div>
       <div id='projects_showcase'>
-        <Project name='Atrium' desc={desc} images={images}/>
-        <Project name='Atrium' desc={desc} images={images}/>
-        <Project name='Atrium' desc={desc} images={images}/>
-        <Project name='Atrium' desc={desc} images={images}/>
-        <Project name='Atrium' desc={desc} images={images}/>
+        <Project name='Atrium' desc='A GPU accelerated path tracer written in GLSL.' images={atriumImages}/>
+        <Project name='MyCraft' desc='A Minecraft clone written in Unity.' images={myCraftImages}/>
       </div>
     </div>
   )
