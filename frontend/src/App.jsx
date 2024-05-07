@@ -22,29 +22,44 @@ function App({resources}){
   )
 }
 function Projects(){
+  const desc='A GPU Accelerated Ray Tracer written in GLSL';
+  const images = [
+    'https://github.com/mooddood235/Atrium/assets/62807754/17e96540-e867-493f-92f1-31be59419331',
+    'https://github.com/mooddood235/Atrium/assets/62807754/beb7890d-c105-47b4-bbcb-379d67a44754',
+    'https://github.com/mooddood235/Atrium/assets/62807754/27bb77d2-aa7d-4556-aed3-3b83dfd99470'
+  ];
+
   return (
     <div id='projects'>
       <div id='projects_title'>Projects</div>
       <div id='projects_showcase'>
-        <Project name='Atrium' desc='A GPU Accelerated Ray Tracer written in GLSL'/>
-        <Project name='Atrium' desc='A GPU Accelerated Ray Tracer written in GLSL'/>
-        <Project name='Atrium' desc='A GPU Accelerated Ray Tracer written in GLSL'/>
-        <Project name='Atrium' desc='A GPU Accelerated Ray Tracer written in GLSL'/>
-        <Project name='Atrium' desc='A GPU Accelerated Ray Tracer written in GLSL'/>
-        <Project name='Atrium' desc='A GPU Accelerated Ray Tracer written in GLSL'/>
+        <Project name='Atrium' desc={desc} images={images}/>
+        <Project name='Atrium' desc={desc} images={images}/>
+        <Project name='Atrium' desc={desc} images={images}/>
+        <Project name='Atrium' desc={desc} images={images}/>
+        <Project name='Atrium' desc={desc} images={images}/>
       </div>
     </div>
   )
 }
-function Project({name, desc}){
+function Project({name, desc, images}){
   return (
     <div className='project'>
       <div className='project_name'>{name}</div>
-      <div>{desc}</div>
+      <div className='project_description'>{desc}</div>
+      <ProjectImages images={images}/>
     </div>
   )
 }
-
+function ProjectImages({images}){
+  return (
+    <div className='project_images'>
+      {images.map((item, index)=>(
+        <img key={index} src={item}/>
+      ))}
+    </div>
+  )
+}
 function Skills(){
   const folderPath = 'src/assets/skills_pictures';
   const languagesFileNames = [

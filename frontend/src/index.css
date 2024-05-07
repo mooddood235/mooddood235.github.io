@@ -162,7 +162,7 @@ body, #root, #app{
 }
 .project{
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: column nowrap;
   width: 23%;
   height: 40%;
   backdrop-filter: blur(5px);
@@ -171,4 +171,21 @@ body, #root, #app{
 }
 .project_name{
   font-size: 1.5vmax;
+  font-family: 'JetBrains Mono BOld';
+}
+.project_description{
+  font-size: 1vmax;
+}
+.project_images{
+  border: 2px solid black;
+  height: 100%;
+  overflow-x: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.project_images img{
+  max-height: 100%;
+  max-width: 100%;
+  display: block;
 }
