@@ -209,3 +209,10 @@ body, #root, #app{
   max-width: 100%;
   display: block;
 }
+.project_link{
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 2vmax;
+  cursor: pointer;
+}

@@ -53,6 +53,7 @@ function Project({name, desc, images}){
   return (
     <div className='project'>
       <div className='project_name'>{name}</div>
+      <div className='project_link'><div className='fa fa-github'/></div>
       <div className='project_description'>{desc}</div>
       <ProjectImages images={images}/>
     </div>
