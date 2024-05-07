@@ -189,20 +189,21 @@ function Nav(){
     transition={{delay:2, duration:2}}
     >
       <ul>
-        <li><NavElement text='ABOUT'/></li>
-        <li><NavElement text='SKILLS'/></li>
-        <li><NavElement text='PROJECTS'/></li>
+        <li><NavElement text='ABOUT' scrollTo={window.innerWidth / 2}/></li>
+        <li><NavElement text='SKILLS' scrollTo={window.innerWidth}/></li>
+        <li><NavElement text='PROJECTS' scrollTo={window.innerWidth * 2}/></li>
       </ul>
     </motion.div>
   )
 }
-function NavElement({text}){
+function NavElement({text, scrollTo}){
   const [state, setState] = useState('not-hovered');
   return (
     <motion.div className='nav_element'
+      onClick={()=>window.scrollTo(0, scrollTo)}
       onHoverStart={()=>setState('hovered')}
-     onHoverEnd={()=>setState('not-hovered')}
-     animate={{marginLeft:state==='hovered'?'1em':'0em'}}
+      onHoverEnd={()=>setState('not-hovered')}
+      animate={{marginLeft:state==='hovered'?'1em':'0em'}}
     >
       {text}
       <motion.div className='underline'

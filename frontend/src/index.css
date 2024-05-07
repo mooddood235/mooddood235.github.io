@@ -37,6 +37,7 @@ html{
   font-family: 'JetBrains Mono';
   overflow: hidden;
   animation: enableScroll 0s 4s forwards;
+  scroll-behavior: smooth;
 }
 body, #root, #app{
   all: unset;
