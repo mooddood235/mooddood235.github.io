@@ -53,6 +53,16 @@ function Projects(){
     'https://github.com/mooddood235/MetaBalls/assets/62807754/be7f5d69-8a34-42a2-8f41-fa22a3ea97b2',
     'https://github.com/mooddood235/MetaBalls/assets/62807754/ef698954-1595-4546-a358-40700da54d51'
   ];
+  const unityPathTracerImages = [
+    'https://github.com/mooddood235/Unity-GPU-Path-Tracer/assets/62807754/34ab76f8-6f55-470c-80b8-349c6e1d91cc',
+    'https://github.com/mooddood235/Unity-GPU-Path-Tracer/assets/62807754/1ad37762-e80b-4238-83de-0f6ee2fd3369',
+    'https://github.com/mooddood235/Unity-GPU-Path-Tracer/assets/62807754/8c6bbf70-a131-4f16-ba8b-36919d85d397'
+  ];
+  const pbrRendererImages = [
+    'https://github.com/mooddood235/PBR-Rasterizer/assets/62807754/4e3ee52a-1d77-4e64-a3ff-20cc703f9069',
+    'https://github.com/mooddood235/PBR-Rasterizer/assets/62807754/6ef3959c-4604-4e21-9a13-3cee1f371494',
+    'https://github.com/mooddood235/PBR-Rasterizer/assets/62807754/e9269eae-bc4b-440c-9a23-f6a5d77c7cf8'
+  ];
   return (
     <div id='projects'>
       <div id='projects_title'>Projects</div>
@@ -61,6 +71,10 @@ function Projects(){
         <Project name='MyCraft' desc='A Minecraft clone written in Unity.' images={myCraftImages}/>
         <Project name='Slime-Simulation' desc='A GPU accelerated simulation of the Physarum Polycephalum slime mold organism.' images={slimeImages}/>
         <Project name='MetaBalls' desc='A 2D metaball simulation utilizing computer shaders.' images={metaBallsImages}/>
+        <Project name='Unity-GPU-Path-Tracer' desc='A GPU accelerated path tracer built in Unity.' images={unityPathTracerImages}/>
+        <Project name='OpenGL-PBR-Renderer' desc="A PBR renderer written in OpenGL." images={pbrRendererImages}/>
+        <Project name='PotentialPotato' desc='A depenently typed functional programming language based on Pie.' images={['https://mit-press-us.imgix.net/covers/9780262536431.jpg?auto=format&w=298&dpr=1&q=80']}/>
+        <Project name='Mu-Kanren-Implementation' desc='Implementation of µKanren, a minimalist language in the miniKanren family of relational (logic) programming languages.' images={['https://github.com/mooddood235/Mu-Kanren-Implementation/assets/62807754/fb859d1d-3147-4e0a-bbf2-11193e4eecd2']}/>
       </div>
     </div>
   )
