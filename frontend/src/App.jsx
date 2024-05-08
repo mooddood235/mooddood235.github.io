@@ -39,12 +39,28 @@ function Projects(){
     'https://github.com/mooddood235/MyCraft/assets/62807754/1d1f1c30-e0cc-4ca7-a645-3cbb73c8d235',
     'https://github.com/mooddood235/MyCraft/assets/62807754/6106f9a3-35de-4df6-a683-ff50a7b6dd2e'
   ];
+  const slimeImages = [
+    'https://github.com/mooddood235/Slime-Simulation/assets/62807754/72d75da1-f800-4cee-bc67-463bfc6c9b8a',
+    'https://github.com/mooddood235/Slime-Simulation/assets/62807754/701ddd40-917a-4b88-897b-87c3b9d8fa8a',
+    'https://github.com/mooddood235/Slime-Simulation/assets/62807754/2d6b1f00-5262-465c-8f80-34dfa4810585',
+    'https://github.com/mooddood235/Slime-Simulation/assets/62807754/1042c236-61ba-4633-ad0a-c5540bcd6636',
+    'https://github.com/mooddood235/Slime-Simulation/assets/62807754/ddfad627-2a1f-4e76-9a21-5a1396393a4a',
+    'https://github.com/mooddood235/Slime-Simulation/assets/62807754/6caa3c39-c93a-4ea1-aff3-89cad4c3b95a'
+  ];
+  const metaBallsImages = [
+    'https://github.com/mooddood235/MetaBalls/assets/62807754/b537e09d-5415-4edf-98ff-5cdc92031b7b',
+    'https://github.com/mooddood235/MetaBalls/assets/62807754/145beef7-e3c8-47df-860a-4eb0bbb67542',
+    'https://github.com/mooddood235/MetaBalls/assets/62807754/be7f5d69-8a34-42a2-8f41-fa22a3ea97b2',
+    'https://github.com/mooddood235/MetaBalls/assets/62807754/ef698954-1595-4546-a358-40700da54d51'
+  ];
   return (
     <div id='projects'>
       <div id='projects_title'>Projects</div>
       <div id='projects_showcase'>
         <Project name='Atrium' desc='A GPU accelerated path tracer written in GLSL.' images={atriumImages}/>
         <Project name='MyCraft' desc='A Minecraft clone written in Unity.' images={myCraftImages}/>
+        <Project name='Slime-Simulation' desc='A GPU accelerated simulation of the Physarum Polycephalum slime mold organism.' images={slimeImages}/>
+        <Project name='MetaBalls' desc='A 2D metaball simulation utilizing computer shaders.' images={metaBallsImages}/>
       </div>
     </div>
   )
