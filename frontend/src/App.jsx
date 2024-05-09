@@ -231,9 +231,9 @@ function Nav(){
     transition={{delay:2, duration:2}}
     >
       <ul>
-        <li><NavElement text='ABOUT' scrollTo={window.innerWidth / 2}/></li>
-        <li><NavElement text='SKILLS' scrollTo={window.innerWidth}/></li>
-        <li><NavElement text='PROJECTS' scrollTo={window.innerWidth * 2}/></li>
+        <li><NavElement text='ABOUT' scrollTo={window.innerHeight}/></li>
+        <li><NavElement text='SKILLS' scrollTo={window.innerHeight * 2}/></li>
+        <li><NavElement text='PROJECTS' scrollTo={window.innerHeight * 3}/></li>
       </ul>
     </motion.div>
   )
