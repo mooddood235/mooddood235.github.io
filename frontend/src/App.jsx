@@ -75,6 +75,8 @@ function Projects(){
         <Project name='OpenGL-PBR-Renderer' desc="A PBR renderer written in OpenGL." images={pbrRendererImages}/>
         <Project name='PotentialPotato' desc='A depenently typed functional programming language based on Pie.' images={['https://mit-press-us.imgix.net/covers/9780262536431.jpg?auto=format&w=298&dpr=1&q=80']}/>
         <Project name='Mu-Kanren-Implementation' desc='Implementation of µKanren, a minimalist language in the miniKanren family of relational (logic) programming languages.' images={['https://github.com/mooddood235/Mu-Kanren-Implementation/assets/62807754/fb859d1d-3147-4e0a-bbf2-11193e4eecd2']}/>
+        <Project name='TicketMasterCounter' desc='Takes a TicketMaster HTML file and counts how many seats are unavailable, available, or for resale.'/>
+        <Project name='PrettyCarnap' desc='A latex compiler for natural deductions written with Carnap.io.'/>
       </div>
     </div>
   )
@@ -90,7 +92,7 @@ function Project({name, desc, images}){
         <div className='fa fa-github'/>
       </div>
       <div className='project_description'>{desc}</div>
-      <ProjectImages images={images}/>
+      {images ? <ProjectImages images={images}/> : null}
     </div>
   )
 }
