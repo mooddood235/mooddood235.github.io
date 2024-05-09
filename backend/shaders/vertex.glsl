@@ -7,7 +7,7 @@ varying vec3 vNormal;
 varying vec3 vViewPosition;
 varying vec3 vColor;
 
-const float offset = 0.001;
+const float offset = 0.01;
 const float strength = 0.8;
 const float freq = 0.25;
 
