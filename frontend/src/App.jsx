@@ -233,7 +233,7 @@ function Nav(){
       <ul>
         <li><NavElement text='ABOUT' scrollTo={window.innerHeight}/></li>
         <li><NavElement text='SKILLS' scrollTo={window.innerHeight * 2}/></li>
-        <li><NavElement text='PROJECTS' scrollTo={window.innerHeight * 3}/></li>
+        <li><NavElement text='PROJECTS' scrollTo={window.innerHeight * 3 + 0.10 * window.innerHeight}/></li>
       </ul>
     </motion.div>
   )
