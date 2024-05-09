@@ -4,8 +4,6 @@ import App from './App.jsx'
 import * as THREE from 'three';
 import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
 import './index.css'
-import { api_getshaders } from './api.js';
-
 
 GetResources((resources)=>{
   ReactDOM.createRoot(document.getElementById('root')).render(
@@ -13,14 +11,19 @@ GetResources((resources)=>{
   )
 })
 function GetResources(cb){
-  api_getshaders(function(data0){
-    const loader = new RGBELoader();
-    loader.load('/src/assets/studio.hdr', 
-    (envTexture)=>{
-      envTexture.mapping = THREE.EquirectangularReflectionMapping;
-      cb({...data0, envTexture})
-    },
-    (xhr)=>{},
-    (error)=>console.error(error))
-  })
+  const loader = new RGBELoader();
+  loader.load('src/assets/studio.hdr', (envTexture) =>{
+    envTexture.mapping = THREE.EquirectangularReflectionMapping;
+    fetch('src/vertex.glsl')
+    .then(response=>response.text())
+    .then(vertexStr=>{
+      fetch('src/fragment.glsl')
+      .then(response=>response.text())
+      .then(fragmentStr=>{
+        cb({vertexStr, fragmentStr, envTexture});
+      })
+    });
+  },
+  (xhr)=>{},
+  (error)=>console.error(error));
 }
