@@ -11,7 +11,7 @@ GetResources((resources)=>{
 })
 function GetResources(cb){
   const loader = new RGBELoader();
-  loader.load('./src/assets/studio.hdr', (envTexture) =>{
+  loader.load('/studio.hdr', (envTexture) =>{
     envTexture.mapping = THREE.EquirectangularReflectionMapping;
     fetch('./src/vertex.glsl')
     .then(response=>response.text())
