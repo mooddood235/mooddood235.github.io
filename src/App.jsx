@@ -106,7 +106,7 @@ function ProjectImages({images}){
   )
 }
 function Skills(){
-  const folderPath = 'src/assets/skills_pictures';
+  const folderPath = './src/assets/skills_pictures';
   const languagesFileNames = [
     ['C++.png', 'C++'],
     ['Csharp.png', 'C#'],
