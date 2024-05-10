@@ -314,7 +314,7 @@ function Three({resources}){
     function render(timeStamp){
       timeStamp /= 1000.0;
       const scrollT0 = MathUtils.clamp(window.scrollY / window.innerHeight * (5/4), 0.0, 1.0);
-      const scrollT1 = MathUtils.clamp(window.scrollY / window.innerHeight * (5/4) - (3/2), 0.0, 1.0);
+      const scrollT1 = MathUtils.clamp(window.scrollY / window.innerHeight * (5/3) - 2, 0.0, 1.0);
 
       if (material.userData.shader){
         material.userData.shader.uniforms.time.value = timeStamp;
