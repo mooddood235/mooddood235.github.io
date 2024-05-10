@@ -13,10 +13,10 @@ function GetResources(cb){
   const loader = new RGBELoader();
   loader.load('/studio.hdr', (envTexture) =>{
     envTexture.mapping = THREE.EquirectangularReflectionMapping;
-    fetch('./src/vertex.glsl')
+    fetch('/vertex.glsl')
     .then(response=>response.text())
     .then(vertexStr=>{
-      fetch('./src/fragment.glsl')
+      fetch('/fragment.glsl')
       .then(response=>response.text())
       .then(fragmentStr=>{
         cb({vertexStr, fragmentStr, envTexture});
