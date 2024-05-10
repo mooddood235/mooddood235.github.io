@@ -1,14 +1,14 @@
 @font-face {
   font-family: 'JetBrains Mono';
-  src: url('assets/fonts/ttf/JetBrainsMono-Regular.ttf');
+  src: url('./assets/fonts/ttf/JetBrainsMono-Regular.ttf');
 }
 @font-face {
   font-family: 'JetBrains Mono Bold';
-  src: url('assets/fonts/ttf/JetBrainsMono-Bold.ttf');
+  src: url('./assets/fonts/ttf/JetBrainsMono-Bold.ttf');
 }
 @font-face{
   font-family: 'JetBrains Mono ExtraBold';
-  src: url('assets/fonts/ttf/JetBrainsMono-ExtraBold.ttf');
+  src: url('./assets/fonts/ttf/JetBrainsMono-ExtraBold.ttf');
 }
 @keyframes enableScroll {
   100%{overflow-y:auto;}
