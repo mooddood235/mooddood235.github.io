@@ -54,6 +54,24 @@ body, #root, #app{
   align-items: center;
   justify-content: center;
 }
+#contacts{
+  position: absolute;
+  left: 1.5%;
+  top: -4%;
+  display: flex;
+  flex-flow: row wrap;
+  gap: 20px;
+  align-items: center;
+}
+.symbol_link{
+  cursor: pointer;
+}
+[class='fa fa-envelope']{
+  cursor: default;
+}
+.email{
+  font-size: 1.3vmax;
+}
 #name{
   font-size: 10vmax;
   position: absolute;

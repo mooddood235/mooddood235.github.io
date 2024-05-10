@@ -210,6 +210,7 @@ function Home({cursorPos}){
         animate={{marginRight:'40%'}}
         transition={{delay:2, duration:2}}
       >
+        <Contacts/>
         Mahmoud<br/>
         Zeidan
         <div id='shadow' style={shadowStyle}>
@@ -219,6 +220,35 @@ function Home({cursorPos}){
         <Nav/>
       </motion.div>
     </div>
+  )
+}
+function Contacts(){
+  return (
+    <motion.div id='contacts'
+    initial={{opacity:0}}
+    animate={{opacity:1}}
+    transition={{delay:2, duration:2}}
+    >
+      <SymbolLink symbol='fa fa-github' link='https://github.com/mooddood235'/>
+      <SymbolLink symbol='fa fa-linkedin-square' link='https://www.linkedin.com/in/mahmoud-zeidan-344257268/'/>
+      <SymbolLink symbol='fa fa-envelope'/>
+      <div className='email'>qu.mahmoud.z@gmail.com</div>
+    </motion.div>
+  )
+}
+function SymbolLink({symbol, link}){
+  const [state, setState] = useState('not-hovered');
+
+  return (
+    <motion.div className='symbol_link'
+      onClick={()=>{if(link)window.open(link)}}
+      onHoverStart={()=>{if(link)setState('hovered')}}
+      onHoverEnd={()=>setState('not-hovered')}
+      animate={{fontSize:state==='hovered'?'3.5vmax':'2.5vmax'}}
+      transition={{duration:0.5}}
+    >
+      <div className={symbol}/>
+    </motion.div>
   )
 }
 function Nav(){
