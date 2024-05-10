@@ -11,7 +11,7 @@ GetResources((resources)=>{
 })
 function GetResources(cb){
   const loader = new RGBELoader();
-  loader.load('https://mooddood235.github.io/src/assets/studio.hdr', (envTexture) =>{
+  loader.load('./src/assets/studio.hdr', (envTexture) =>{
     envTexture.mapping = THREE.EquirectangularReflectionMapping;
     fetch('./src/vertex.glsl')
     .then(response=>response.text())
