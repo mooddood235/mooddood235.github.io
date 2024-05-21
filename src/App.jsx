@@ -181,8 +181,8 @@ function About(){
       <div id='about_content'>
         <div id='about_title'>About Me</div>
         <div id='about_textblock'>
-          My name is <JetBrainsBold text='Mahmoud Zeidan'/>. I am a 5<sup>th</sup> year 
-          Computer Science student at the University of Toronto.
+          My name is <JetBrainsBold text='Mahmoud Zeidan'/>. I am a 
+          Computer Science student at the <JetBrainsBold text='University of Toronto'/>.
           I like to explore how technology works on a fundemental level. I enjoy building systems
           and tools that enable others to create software. My focus areas include 
           <JetBrainsBold text=' computer graphics'/>, <JetBrainsBold text='game development'/>,
